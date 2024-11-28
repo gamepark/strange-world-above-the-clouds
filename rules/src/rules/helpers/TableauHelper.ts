@@ -3,6 +3,14 @@ import uniqBy from 'lodash/uniqBy'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 
+export type Boundaries = {
+  xMin: number,
+  xMax: number,
+  yMin: number,
+  yMax: number,
+}
+
+
 export class TableauHelper extends MaterialRulesPart {
 
   constructor(game: MaterialGame, readonly player: number) {
@@ -47,7 +55,7 @@ export class TableauHelper extends MaterialRulesPart {
 
   }
 
-  get boundaries() {
+  get boundaries(): Boundaries {
     const panorama = this.panorama
     return {
       xMin: panorama.minBy((item) => item.location.x!).getItem()?.location?.x ?? 0,

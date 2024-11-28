@@ -59,6 +59,7 @@ export class LandCardDescription extends CardDescription {
 
   isFlippedOnTable(item: Partial<MaterialItem>, context: MaterialContext): boolean {
     if (item.location?.type === LocationType.DraftArea) return true;
+    if (item.location?.type === LocationType.Tableau && item.location.rotation) return true
     return super.isFlippedOnTable(item, context)
   }
 }

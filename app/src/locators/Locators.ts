@@ -9,6 +9,7 @@ import { landDeckLocator } from './LandDeckLocator'
 import { playerHandLocator } from './PlayerHandLocator'
 import { tableauLocator } from './TableauLocator'
 import { travelerStackLocator } from './TravelerStackLocator'
+import { playerTravelerLocator } from './PlayerTravelerLocator'
 
 export const Locators: Partial<Record<LocationType, Locator<PlayerColor, MaterialType, LocationType>>> = {
   [LocationType.LandDeck]: landDeckLocator,
@@ -17,5 +18,6 @@ export const Locators: Partial<Record<LocationType, Locator<PlayerColor, Materia
   [LocationType.DarkCityStack]: darkCityStackLocator,
   [LocationType.Hand]: playerHandLocator,
   [LocationType.DraftArea]: draftAreaLocator,
-  [LocationType.TravelerStack]: travelerStackLocator
+  [LocationType.TravelerStack]: travelerStackLocator,
+  [LocationType.PlayerTraveler]: playerTravelerLocator
 }

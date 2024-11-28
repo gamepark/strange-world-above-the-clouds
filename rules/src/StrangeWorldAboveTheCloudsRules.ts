@@ -15,6 +15,7 @@ import { DealRule } from './rules/DealRule'
 import { DraftRule } from './rules/DraftRule'
 import { PlayLandCardRule } from './rules/PlayLandCardRule'
 import { RuleId } from './rules/RuleId'
+import { WelcomingTravelerRule } from './rules/WelcomingTravelerRule'
 
 
 /**
@@ -27,6 +28,7 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
     [RuleId.Deal]: DealRule,
     [RuleId.Draft]: DraftRule,
     [RuleId.PlayLandCard]: PlayLandCardRule,
+    [RuleId.WelcomingTraveler]: WelcomingTravelerRule
   }
 
   locationsStrategies = {
