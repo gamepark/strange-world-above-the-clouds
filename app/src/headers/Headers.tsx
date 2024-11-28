@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { RuleId } from '@gamepark/game-template/rules/RuleId'
+import { RuleId } from '@gamepark/strange-world-above-the-clouds/rules/RuleId'
 import { ComponentType } from 'react'
 import { TheFirstStepHeader } from './TheFirstStepHeader'
 

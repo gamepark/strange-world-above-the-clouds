@@ -1,5 +1,5 @@
 {
-  "name": "@gamepark/game-template-app",
+  "name": "@gamepark/strange-world-above-the-clouds-app",
   "version": "0.0.0",
   "private": true,
   "description": "The user interface of Game Template adaptation for Game Park",
@@ -9,8 +9,8 @@
     "@dnd-kit/core": "^6.0.8",
     "@emotion/react": "^11.11.1",
     "@gamepark/avataaars": "^2.2.0",
-    "@gamepark/react-game": "~6.28.1",
-    "@gamepark/rules-api": "~6.28.0",
+    "@gamepark/react-game": "~6.29.2",
+    "@gamepark/rules-api": "~6.29.2",
     "@types/react": "^17.0.68",
     "@types/react-dom": "^17.0.9",
     "@types/react-redux": "^7.1.18",
@@ -38,7 +38,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "deploy": "yarn build && rclone sync build game-template:game-template.game-park.com --progress --s3-acl=public-read"
+    "deploy": "yarn build && rclone sync build strange-world-above-the-clouds:strange-world-above-the-clouds.game-park.com --progress --s3-acl=public-read"
   },
   "eslintConfig": {
     "extends": [
@@ -60,7 +60,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^@gamepark/game-template/(.*)$": "<rootDir>/../rules/src/$1"
+      "^@gamepark/strange-world-above-the-clouds/(.*)$": "<rootDir>/../rules/src/$1"
     }
   }
 }

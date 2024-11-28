@@ -1,3 +1,3 @@
-export { GameTemplateRules } from './GameTemplateRules'
-export { GameTemplateOptionsSpec } from './GameTemplateOptions'
-export { GameTemplateSetup } from './GameTemplateSetup'
+export { StrangeWorldAboveTheCloudsRules } from './StrangeWorldAboveTheCloudsRules'
+export { StrangeWorldAboveTheCloudsOptionsSpec } from './StrangeWorldAboveTheCloudsOptions'
+export { StrangeWorldAboveTheCloudsSetup } from './StrangeWorldAboveTheCloudsSetup'

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { PlayerColor } from '@gamepark/game-template/PlayerColor'
+import { PlayerColor } from '@gamepark/strange-world-above-the-clouds/PlayerColor'
 import { StyledPlayerPanel, usePlayers } from '@gamepark/react-game'
 import { createPortal } from 'react-dom'
 
@@ -28,7 +28,7 @@ const panelPosition = (index: number) => css`
 `
 
 export const playerColorCode: Record<PlayerColor, string> = {
-  [PlayerColor.Red]: 'red',
+  [PlayerColor.Gray]: 'gray',
   [PlayerColor.Blue]: 'blue',
   [PlayerColor.Green]: 'green',
   [PlayerColor.Yellow]: 'yellow'
