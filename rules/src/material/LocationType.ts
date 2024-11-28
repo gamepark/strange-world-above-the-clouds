@@ -1,5 +1,9 @@
 export enum LocationType {
-  Landscape = 1,
+  Tableau = 1,
   LandDeck,
-  Hand
+  Hand,
+  DarkCityStack,
+  FumaroleStack,
+  TravelerStack,
+  DraftArea
 }

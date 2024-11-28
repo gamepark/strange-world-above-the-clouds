@@ -1,3 +1,6 @@
 export enum RuleId {
-  TheFirstStep = 1
+  Deal = 1,
+  Draft,
+  PlayLandCard,
+  WelcomeTraveler
 }

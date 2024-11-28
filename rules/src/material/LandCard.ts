@@ -3,11 +3,12 @@ export enum LandCard {
   StartingGray,
   StartingGreen,
   StartingYellow,
+
   LandBlue1 = 10,
   LandBlueGreen1,
   LandBlueYellow1,
-  LandDot1,
-  LandRed1,
+  Moon,
+  Red1,
   LandGray1,
   LandGrayBlue1,
   LandGrayGray1,
@@ -21,7 +22,14 @@ export enum LandCard {
   LandRedGreen1,
   LandRedYellow1,
   LandYellow1,
-  LandYellowGreen1
+  LandYellowGreen1,
+
+  Fumarole = 50,
 }
+
+export enum LandCardColor {
+
+}
+
 
 export const isStarting = (card: LandCard) => card < 10

@@ -1,5 +1,8 @@
-import { CardDescription } from '@gamepark/react-game'
+import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { MaterialItem } from '@gamepark/rules-api'
 import { LandCard } from '@gamepark/strange-world-above-the-clouds/material/LandCard'
+import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/LocationType'
+import Fumarole from '../images/lands/Fumarole.jpg'
 import LandBack from '../images/lands/LandBack.jpg'
 import LandBlue1 from '../images/lands/LandBlue1.jpg'
 import LandBlueGreen1 from '../images/lands/LandBlueGreen1.jpg'
@@ -35,7 +38,7 @@ export class LandCardDescription extends CardDescription {
     [LandCard.LandBlue1]: LandBlue1,
     [LandCard.LandBlueGreen1]: LandBlueGreen1,
     [LandCard.LandBlueYellow1]: LandBlueYellow1,
-    [LandCard.LandDot1]: LandDot1,
+    [LandCard.Moon]: LandDot1,
     [LandCard.LandGray1]: LandGray1,
     [LandCard.LandGrayBlue1]: LandGrayBlue1,
     [LandCard.LandGrayGray1]: LandGrayGray1,
@@ -49,7 +52,14 @@ export class LandCardDescription extends CardDescription {
     [LandCard.LandRedGreen1]: LandRedGreen1,
     [LandCard.LandRedYellow1]: LandRedYellow1,
     [LandCard.LandYellow1]: LandYellow1,
-    [LandCard.LandYellowGreen1]: LandYellowGreen1
+    [LandCard.LandYellowGreen1]: LandYellowGreen1,
+    [LandCard.Fumarole] : Fumarole
+  }
+
+
+  isFlippedOnTable(item: Partial<MaterialItem>, context: MaterialContext): boolean {
+    if (item.location?.type === LocationType.DraftArea) return true;
+    return super.isFlippedOnTable(item, context)
   }
 }
 

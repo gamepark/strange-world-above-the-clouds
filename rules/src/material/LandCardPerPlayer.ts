@@ -8,12 +8,12 @@ export const getLandscapeCards = (players: number) => {
 }
 
 const onePlayerCards = {
-  [LandCard.LandDot1]: 4,
+  [LandCard.Moon]: 4,
   [LandCard.LandGreen1]: 1,
   [LandCard.LandYellow1]: 1,
   [LandCard.LandBlue1]: 1,
   [LandCard.LandGray1]: 1,
-  [LandCard.LandRed1]: 0,
+  [LandCard.Red1]: 0,
   [LandCard.LandRedYellow1]: 1,
   [LandCard.LandRedBlue1]: 1,
   [LandCard.LandRedGrayGray1]: 1,
@@ -30,12 +30,12 @@ const onePlayerCards = {
 }
 
 const twoPlayersCards = {
-  [LandCard.LandDot1]: 6,
+  [LandCard.Moon]: 6,
   [LandCard.LandGreen1]: 2,
   [LandCard.LandYellow1]: 2,
   [LandCard.LandBlue1]: 2,
   [LandCard.LandGray1]: 2,
-  [LandCard.LandRed1]: 0,
+  [LandCard.Red1]: 0,
   [LandCard.LandRedYellow1]: 1,
   [LandCard.LandRedBlue1]: 1,
   [LandCard.LandRedGrayGray1]: 2,
@@ -52,12 +52,12 @@ const twoPlayersCards = {
 }
 
 const threePlayersCards = {
-  [LandCard.LandDot1]: 8,
+  [LandCard.Moon]: 8,
   [LandCard.LandGreen1]: 2,
   [LandCard.LandYellow1]: 3,
   [LandCard.LandBlue1]: 3,
   [LandCard.LandGray1]: 2,
-  [LandCard.LandRed1]: 0,
+  [LandCard.Red1]: 0,
   [LandCard.LandRedYellow1]: 1,
   [LandCard.LandRedBlue1]: 1,
   [LandCard.LandRedGrayGray1]: 3,
@@ -77,9 +77,9 @@ const fourPlayerCards = {
   [LandCard.LandBlue1]: 10,
   [LandCard.LandBlueGreen1]: 3,
   [LandCard.LandBlueYellow1]: 3,
-  [LandCard.LandDot1]: 3,
+  [LandCard.Moon]: 3,
   [LandCard.LandGray1]: 3,
-  [LandCard.LandRed1]: 1,
+  [LandCard.Red1]: 1,
   [LandCard.LandGrayBlue1]: 2,
   [LandCard.LandGrayGray1]: 2,
   [LandCard.LandGrayGreen1]: 3,
