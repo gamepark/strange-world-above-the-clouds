@@ -35,7 +35,8 @@ class TableauLocator extends Locator {
     const deltaY = (yMin + yMax) / 2
     return {
       x: x + (location.x! - deltaX) * (landCardDescription.width + 0.2),
-      y: y + (location.y! - deltaY) * (landCardDescription.height + 0.2)
+      y: y + (location.y! - deltaY) * (landCardDescription.height + 0.2),
+      z: (location.z ?? 0) * 0.05
     }
   }
 

@@ -1,4 +1,5 @@
-import { isMoveItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { isMoveItemType, ItemMove, Location, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
+import { isSwamp, isVolcano, isWater } from '../LandType'
 import { LandCard } from '../material/LandCard'
 import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
 import { LocationType } from '../material/LocationType'
@@ -12,9 +13,11 @@ export class PlayLandCardRule extends PlayerTurnRule {
 
   getPlayerMoves() {
     const helper = new TableauHelper(this.game, this.player)
-    return helper.availableSpaces.flatMap((location) => {
-      return this.hand.moveItems(location)
-    })
+    return helper.availableSpaces
+      .filter((location) => !this.isBlockedByTraveler(location))
+      .flatMap((location) => {
+        return this.hand.moveItems(location)
+      })
   }
 
   afterItemMove(move: ItemMove) {
@@ -24,9 +27,12 @@ export class PlayLandCardRule extends PlayerTurnRule {
     const item = card.getItem()!
     const moves: MaterialMove[] = []
     const characteristics = LandCardsCharacteristics[item.id as LandCard]
+    const colors = characteristics?.colors ?? []
+    if (isVolcano(colors)) return [this.startRule(RuleId.Volcano)]
+    if (isWater(colors)) return [this.startRule(RuleId.Water)]
+    if (isSwamp(colors)) return [this.startRule(RuleId.Swamp)]
+    if (characteristics.moon) return [this.startRule(RuleId.Moon)]
     if (characteristics?.portal) return [this.startRule(RuleId.WelcomingTraveler)]
-    //if (characteristics.moon) return [this.startRule(RuleId.Moon)]
-    //if (characteristics.volcano) return [this.startRule(RuleId.Eruption)]
     if (this.allCardsPlaces) {
       moves.push(this.startRule(RuleId.Deal))
     } else {
@@ -56,10 +62,21 @@ export class PlayLandCardRule extends PlayerTurnRule {
       .player(player)
   }
 
-  get isEnd() {
-    return this.game
-      .players
-      .every((p) => new TableauHelper(this.game, p).isFull)
+  isBlockedByTraveler(location: Location) {
+    const travelerX = this.travelerX
+    if (travelerX === undefined) return false
+    const boundaries = new TableauHelper(this.game, this.player).boundaries
+    if (travelerX < boundaries.xMin) return location.x! < travelerX
+    return location.x! > travelerX
+  }
+
+  get travelerX() {
+    const travelers = this.material(MaterialType.TravelerCard)
+      .location(LocationType.PlayerTraveler)
+      .player(this.player)
+
+    if (!travelers.length) return undefined
+    return travelers.getItem()!.location.x
   }
 
   get hand() {

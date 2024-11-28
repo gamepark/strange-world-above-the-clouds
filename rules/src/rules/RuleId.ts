@@ -3,6 +3,8 @@ export enum RuleId {
   Draft,
   PlayLandCard,
   WelcomingTraveler,
-  Eruption,
-  Moon
+  Volcano,
+  Moon,
+  Swamp,
+  Water
 }

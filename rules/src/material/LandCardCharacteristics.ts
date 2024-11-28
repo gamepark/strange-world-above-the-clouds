@@ -1,97 +1,91 @@
-import { LandColor } from '../LandColor'
+import { LandType } from '../LandType'
 import { LandCard } from './LandCard'
 
 type LandCardCharacteristics = {
-  colors?: LandColor[],
+  colors?: LandType[],
   portal?: boolean,
   moon?: boolean,
-  volcano?: boolean,
   fumarole?: boolean
 }
 
 export const LandCardsCharacteristics: Record<LandCard, LandCardCharacteristics> = {
   [LandCard.StartingBlue]: {
-    colors: [LandColor.Blue],
+    colors: [LandType.Water],
   },
   [LandCard.StartingGray]: {
-    colors: [LandColor.Gray],
+    colors: [LandType.Snow],
   },
   [LandCard.StartingGreen]: {
-    colors: [LandColor.Green],
+    colors: [LandType.Plant],
   },
   [LandCard.StartingYellow]: {
-    colors: [LandColor.Yellow],
+    colors: [LandType.Swamp],
   },
   [LandCard.LandBlue1]: {
-    colors: [LandColor.Blue],
+    colors: [LandType.Water],
     portal: true,
   },
   [LandCard.LandBlueGreen1]: {
-    colors: [LandColor.Blue, LandColor.Green],
+    colors: [LandType.Water, LandType.Plant],
   },
   [LandCard.LandBlueYellow1]: {
-    colors: [LandColor.Blue, LandColor.Yellow],
+    colors: [LandType.Water, LandType.Swamp],
   },
   [LandCard.Moon]: {
     moon: true
   },
   [LandCard.Red1]: {
-    colors: [LandColor.Red],
-    volcano: true,
+    colors: [LandType.Volcano],
     portal: true,
   },
   [LandCard.LandGray1]: {
-    colors: [LandColor.Gray],
+    colors: [LandType.Snow],
     portal: true,
   },
   [LandCard.LandGrayBlue1]: {
-    colors: [LandColor.Gray, LandColor.Blue],
+    colors: [LandType.Snow, LandType.Water],
   },
   [LandCard.LandGrayGray1]: {
-    colors: [LandColor.Gray, LandColor.Gray],
+    colors: [LandType.Snow, LandType.Snow],
   },
   [LandCard.LandGrayGreen1]: {
-    colors: [LandColor.Gray, LandColor.Green],
+    colors: [LandType.Snow, LandType.Plant],
   },
   [LandCard.LandGrayYellow1]: {
-    colors: [LandColor.Gray, LandColor.Yellow],
+    colors: [LandType.Snow, LandType.Swamp],
   },
   [LandCard.LandGreen1]: {
-    colors: [LandColor.Green],
+    colors: [LandType.Plant],
     portal: true,
   },
   [LandCard.LandGreenGreen1]: {
-    colors: [LandColor.Green, LandColor.Green],
+    colors: [LandType.Plant, LandType.Plant],
   },
   [LandCard.LandGreenGreen2]: {
-    colors: [LandColor.Green, LandColor.Green],
+    colors: [LandType.Plant, LandType.Plant],
   },
   [LandCard.LandRedBlue1]: {
-    colors: [LandColor.Red, LandColor.Blue],
-    volcano: true,
+    colors: [LandType.Volcano, LandType.Water],
     portal: true,
   },
   [LandCard.LandRedGrayGray1]: {
-    colors: [LandColor.Red, LandColor.Gray, LandColor.Gray],
-    volcano: true,
+    colors: [LandType.Volcano, LandType.Snow, LandType.Snow],
   },
 
   [LandCard.LandRedGreen1]: {
-    colors: [LandColor.Red, LandColor.Green],
-    volcano: true,
+    colors: [LandType.Volcano, LandType.Plant],
   },
   [LandCard.LandRedYellow1]: {
-    colors: [LandColor.Red, LandColor.Yellow],
-    volcano: true,
+    colors: [LandType.Volcano, LandType.Swamp],
   },
 
   [LandCard.LandYellow1]: {
-    colors: [LandColor.Yellow],
+    colors: [LandType.Swamp],
     portal: true,
   },
 
   [LandCard.LandYellowGreen1]: {
-    colors: [LandColor.Yellow, LandColor.Green],
+    colors: [LandType.Swamp, LandType.Plant],
   },
 
   [LandCard.Fumarole]: {

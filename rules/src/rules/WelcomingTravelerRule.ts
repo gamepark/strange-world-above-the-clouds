@@ -110,18 +110,11 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
       return this.fetchAdjacentPortal(westCard, Direction.West)
     }
 
-    console.log('Is east card a portal ?', LandCardsCharacteristics[eastCardItem?.id as LandCard]?.portal, eastCardItem?.id)
     if (LandCardsCharacteristics[eastCardItem?.id as LandCard]?.portal) {
       return this.fetchAdjacentPortal(eastCard, Direction.East)
     }
 
     return []
-  }
-
-  get playedCard() {
-    return this
-      .material(MaterialType.LandCard)
-      .index(this.remind(Memory.PlayedLand))
   }
 
   fetchAdjacentPortal(card: Material, direction: Direction): MaterialMove[] {
@@ -130,7 +123,6 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
     const adjacentCoordinates = getSquareInDirection(coordinates, direction)
     const adjacentCard = this.panorama.location((l) => l.x === adjacentCoordinates.x && l.y === adjacentCoordinates.y).getItem()
     if (LandCardsCharacteristics[adjacentCard?.id as LandCard]?.portal) {
-    console.log("Is adjacent card in East has a portal", LandCardsCharacteristics[adjacentCard?.id as LandCard]?.portal, adjacentCard?.id)
       return [this.playedCard.rotateItem(true)]
     } else {
       this.memorize(Memory.TravelerToWelcome, 1)

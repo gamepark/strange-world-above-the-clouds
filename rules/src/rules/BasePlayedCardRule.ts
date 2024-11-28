@@ -1,8 +1,10 @@
-import { PlayerTurnRule } from "@gamepark/rules-api";
+import { MaterialItem, PlayerTurnRule } from '@gamepark/rules-api'
+import { LandCard } from '../material/LandCard'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { PlayerColor } from '../PlayerColor'
 import { TableauHelper } from './helpers/TableauHelper'
+import { Memory } from './Memory'
 import { RuleId } from './RuleId'
 
 export class BasePlayedCardRule extends PlayerTurnRule {
@@ -12,6 +14,10 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     } else {
       return [this.startPlayerTurn(RuleId.PlayLandCard, this.nextPlayer)]
     }
+  }
+
+  isNotDisabled(item: MaterialItem) {
+    return !item.location.rotation && item.id !== LandCard.Fumarole
   }
 
   get panorama() {
@@ -38,5 +44,11 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     return this.game
       .players
       .every((p) => new TableauHelper(this.game, p).isFull)
+  }
+
+  get playedCard() {
+    return this
+      .material(MaterialType.LandCard)
+      .index(this.remind(Memory.PlayedLand))
   }
 }

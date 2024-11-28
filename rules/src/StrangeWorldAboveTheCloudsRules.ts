@@ -13,8 +13,12 @@ import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
 import { DealRule } from './rules/DealRule'
 import { DraftRule } from './rules/DraftRule'
+import { MoonRule } from './rules/MoonRule'
 import { PlayLandCardRule } from './rules/PlayLandCardRule'
 import { RuleId } from './rules/RuleId'
+import { SwampRule } from './rules/SwampRule'
+import { VolcanoRule } from './rules/VolcanoRule'
+import { WaterRule } from './rules/WaterRule'
 import { WelcomingTravelerRule } from './rules/WelcomingTravelerRule'
 
 
@@ -28,7 +32,11 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
     [RuleId.Deal]: DealRule,
     [RuleId.Draft]: DraftRule,
     [RuleId.PlayLandCard]: PlayLandCardRule,
-    [RuleId.WelcomingTraveler]: WelcomingTravelerRule
+    [RuleId.WelcomingTraveler]: WelcomingTravelerRule,
+    [RuleId.Moon]: MoonRule,
+    [RuleId.Swamp]: SwampRule,
+    [RuleId.Water]: WaterRule,
+    [RuleId.Volcano]: VolcanoRule
   }
 
   locationsStrategies = {
