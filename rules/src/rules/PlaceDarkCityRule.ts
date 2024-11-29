@@ -1,9 +1,9 @@
-import { getDistanceBetweenSquares, isMoveItemType, ItemMove, MaterialMove } from '@gamepark/rules-api'
-import { LandCard } from '../material/LandCard'
+import { isMoveItemType, ItemMove, Location, MaterialMove } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
 import { Memory } from './Memory'
+import { getAdjacentFumarole } from './utils/volcano.utils'
 
 export class PlaceDarkCityRule extends BasePlayedCardRule {
   getPlayerMoves() {
@@ -36,12 +36,15 @@ export class PlaceDarkCityRule extends BasePlayedCardRule {
   }
 
   get adjacentFumarole() {
-    const fumaroleCoordinate = this.placedFumarole.getItem()!.location
-    return this.panorama
-      .filter((item) => getDistanceBetweenSquares(
-        { x: item.location.x!, y: item.location.y! },
-        { x: fumaroleCoordinate.x!, y: fumaroleCoordinate.y! }
-      ) === 1 && item.id === LandCard.Fumarole)
+    return getAdjacentFumarole(this.panorama, this.playerDarkCities, this.placedFumarole.getItem()!.location)
+  }
+
+  hasDarkCitiesOnIt(location: Location) {
+    return this.playerDarkCities
+      .getItems()
+      .some((item) =>
+        Math.abs(location.x! - (item.location.x!)) === 0.5 ||
+        Math.abs(location.y! - (item.location.y!)) === 0.5)
   }
 
   get placedFumarole() {
@@ -55,5 +58,12 @@ export class PlaceDarkCityRule extends BasePlayedCardRule {
       .material(MaterialType.DarkCityCard)
       .location(LocationType.DarkCityStack)
       .sort((item) => -item.location.x!)
+  }
+
+  get playerDarkCities() {
+    return this
+      .material(MaterialType.DarkCityCard)
+      .location(LocationType.Tableau)
+      .player(this.player)
   }
 }
