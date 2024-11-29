@@ -7,8 +7,8 @@ export class DraftAreaLocator extends ListLocator {
   gap = { x: 1 }
   getCoordinates(location: Location, context: MaterialContext) {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
-    coordinates.y += 18
-    coordinates.x += 15
+    coordinates.y! += 18
+    coordinates.x! += 15
     return coordinates
   }
 

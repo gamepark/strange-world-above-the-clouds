@@ -1,10 +1,9 @@
-import { getDistanceBetweenSquares, isMoveItemType, ItemMove, MaterialMove } from '@gamepark/rules-api'
-import { isSwamp, isWater } from '../LandType'
+import { getDistanceBetweenSquares, isMoveItemType, ItemMove, MaterialMove, MoveItem } from '@gamepark/rules-api'
 import { LandCard } from '../material/LandCard'
-import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
+import { Memory } from './Memory'
 import { RuleId } from './RuleId'
 
 export class VolcanoRule extends BasePlayedCardRule {
@@ -40,16 +39,31 @@ export class VolcanoRule extends BasePlayedCardRule {
     if (!isMoveItemType(MaterialType.LandCard)(move) || move.location.rotation) return []
     const cardOnPlace = this.panorama.location((l) => l.x === move.location.x && l.y === move.location.y)
     const moves: MaterialMove[] = cardOnPlace.deleteItems()
+    this.forget(Memory.PlayedLand, move.itemIndex)
 
-    if (this.isAlsoWater) {
-      moves.push(this.startRule(RuleId.Water))
-    } else if (this.isAlsoSwamp) {
-      moves.push(this.startRule(RuleId.Swamp))
-    } else {
-      moves.push(...this.goToNextRule())
+    const goToDarkCityPlacement = this.goToDarkCityPlacement(move);
+    if (goToDarkCityPlacement.length) {
+      moves.push(...goToDarkCityPlacement)
+      return moves
     }
 
+    moves.push(...this.goToNextRule())
     return moves
+  }
+
+  goToDarkCityPlacement(move: MoveItem) {
+    const adjacentCards = this.panorama
+      .filter((item) => getDistanceBetweenSquares(
+        { x: item.location.x!, y: item.location.y! },
+        { x: move.location.x!, y: move.location.y! }
+      ) === 1 && item.id === LandCard.Fumarole)
+
+    if (adjacentCards.length >= 1) {
+      this.memorize(Memory.PlayedFumarole, move.itemIndex)
+      return [this.startRule(RuleId.PlaceDarkCity)]
+    }
+
+    return []
   }
 
   get fumaroles() {
@@ -69,18 +83,5 @@ export class VolcanoRule extends BasePlayedCardRule {
         { x: item.location.x!, y: item.location.y! },
         { x: playedCardItem.location.x!, y: playedCardItem.location.y! }
       ) === 1 && this.isNotDisabled(item))
-  }
-
-  get isAlsoWater() {
-    return isWater(this.playedCardCharacteristics.colors ?? [])
-  }
-
-  get isAlsoSwamp() {
-    return isSwamp(this.playedCardCharacteristics.colors ?? [])
-  }
-
-  get playedCardCharacteristics() {
-    const item = this.playedCard.getItem()!
-    return LandCardsCharacteristics[item.id as LandCard]
   }
 }

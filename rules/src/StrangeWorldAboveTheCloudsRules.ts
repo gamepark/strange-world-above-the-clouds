@@ -12,13 +12,12 @@ import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
 import { DealRule } from './rules/DealRule'
+import { DesolationOfTheTzimimeRule } from './rules/DesolationOfTheTzimimeRule'
 import { DraftRule } from './rules/DraftRule'
-import { MoonRule } from './rules/MoonRule'
+import { PlaceDarkCityRule } from './rules/PlaceDarkCityRule'
 import { PlayLandCardRule } from './rules/PlayLandCardRule'
 import { RuleId } from './rules/RuleId'
-import { SwampRule } from './rules/SwampRule'
 import { VolcanoRule } from './rules/VolcanoRule'
-import { WaterRule } from './rules/WaterRule'
 import { WelcomingTravelerRule } from './rules/WelcomingTravelerRule'
 
 
@@ -33,10 +32,9 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
     [RuleId.Draft]: DraftRule,
     [RuleId.PlayLandCard]: PlayLandCardRule,
     [RuleId.WelcomingTraveler]: WelcomingTravelerRule,
-    [RuleId.Moon]: MoonRule,
-    [RuleId.Swamp]: SwampRule,
-    [RuleId.Water]: WaterRule,
-    [RuleId.Volcano]: VolcanoRule
+    [RuleId.Volcano]: VolcanoRule,
+    [RuleId.DesolationOfTheTzimime]: DesolationOfTheTzimimeRule,
+    [RuleId.PlaceDarkCity]: PlaceDarkCityRule
   }
 
   locationsStrategies = {

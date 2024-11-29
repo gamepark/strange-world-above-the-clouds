@@ -23,6 +23,7 @@ import LandRedYellow1 from '../images/lands/LandRedYellow1.jpg'
 import LandYellow1 from '../images/lands/LandYellow1.jpg'
 import LandYellowGreen1 from '../images/lands/LandYellowGreen1.jpg'
 import StartingBlue from '../images/lands/StartingBlue.jpg'
+import LandRed1 from '../images/lands/LandRed1.jpg'
 import StartingGray from '../images/lands/StartingGray.jpg'
 import StartingGreen from '../images/lands/StartingGreen.jpg'
 import StartingYellow from '../images/lands/StartingYellow.jpg'
@@ -39,6 +40,7 @@ export class LandCardDescription extends CardDescription {
     [LandCard.LandBlueGreen1]: LandBlueGreen1,
     [LandCard.LandBlueYellow1]: LandBlueYellow1,
     [LandCard.Moon]: LandDot1,
+    [LandCard.Red1]: LandRed1,
     [LandCard.LandGray1]: LandGray1,
     [LandCard.LandGrayBlue1]: LandGrayBlue1,
     [LandCard.LandGrayGray1]: LandGrayGray1,

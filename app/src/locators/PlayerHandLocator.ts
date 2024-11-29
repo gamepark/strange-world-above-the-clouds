@@ -5,7 +5,8 @@ import { tableauLocator } from './TableauLocator'
 export class PlayerHandLocator extends HandLocator {
   getCoordinates(location: Location, context: MaterialContext) {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
-    coordinates.y += 18
+    coordinates.y! += 18
+    coordinates.z = 0.05
     return coordinates
   }
 
@@ -21,7 +22,5 @@ export class PlayerHandLocator extends HandLocator {
     return ['translateZ(10em)', `rotateZ(${-this.getItemRotateZ(item, context)}${this.rotationUnit})`, 'scale(2)', 'translateY(-25%)']
   }
 }
-
-
 
 export const playerHandLocator = new PlayerHandLocator()

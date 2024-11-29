@@ -1,5 +1,5 @@
 import { DropAreaDescription, getRelativePlayerIndex, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
-import { isMoveItem, isMoveItemType, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
+import { Coordinates, isMoveItem, isMoveItemType, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
 import isEqual from 'lodash/isEqual'
@@ -34,13 +34,19 @@ class TableauLocator extends Locator {
     const deltaX = (xMin + xMax) / 2
     const deltaY = (yMin + yMax) / 2
     return {
-      x: x + (location.x! - deltaX) * (landCardDescription.width + 0.2),
-      y: y + (location.y! - deltaY) * (landCardDescription.height + 0.2),
+      x: x! + (location.x! - deltaX) * (landCardDescription.width + 0.1),
+      y: y !+ (location.y! - deltaY) * (landCardDescription.height + 0.1),
       z: (location.z ?? 0) * 0.05
     }
   }
 
-  getBaseCoordinates(location: Location, context: MaterialContext) {
+  getItemCoordinates(item: MaterialItem, context: ItemContext): Partial<Coordinates> {
+    const coordinates = super.getItemCoordinates(item, context)
+    if (context.type === MaterialType.DarkCityCard) coordinates.z = (coordinates.z ?? 0) + 1
+    return coordinates
+  }
+
+  getBaseCoordinates(location: Location, context: MaterialContext): Partial<Coordinates> {
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]
     const players = context.rules.players.length

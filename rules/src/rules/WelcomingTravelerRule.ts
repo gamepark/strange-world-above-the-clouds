@@ -1,6 +1,4 @@
-import { Direction, getSquareInDirection, isMoveItemType, ItemMove, Material, MaterialItem, MaterialMove } from '@gamepark/rules-api'
-import { LandCard } from '../material/LandCard'
-import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
+import { isMoveItemType, ItemMove, Material, MaterialItem, MaterialMove } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
@@ -9,12 +7,11 @@ import { Memory } from './Memory'
 
 export class WelcomingTravelerRule extends BasePlayedCardRule {
   onRuleStart() {
-    const moves: MaterialMove[] = this.handleWelcomingTraveler()
     if (!this.travelerCount) {
-      moves.push(...this.goToNextRule())
+      return this.goToNextRule()
     }
 
-    return moves
+    return []
   }
 
   getPlayerMoves() {
@@ -83,58 +80,12 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
     return this.remind(Memory.TravelerToWelcome) ?? 0
   }
 
-  handleWelcomingTraveler(): MaterialMove[] {
-    const card = this.playedCard
-    const item = card.getItem()!
-    const coordinates = { x: item.location.x, y: item.location.y }
-    const westCoordinates = getSquareInDirection(coordinates, Direction.West)
-    const eastCoordinates = getSquareInDirection(coordinates, Direction.East)
-    const westCard = this.panorama.location((l) => l.x === westCoordinates.x && l.y === westCoordinates.y)
-    const westCardItem = westCard.getItem()
-    const eastCard = this.panorama.location((l) => l.x === eastCoordinates.x && l.y === eastCoordinates.y)
-    const eastCardItem = eastCard.getItem()
-    if (
-      !LandCardsCharacteristics[westCardItem?.id as LandCard]?.portal &&
-      !LandCardsCharacteristics[eastCardItem?.id as LandCard]?.portal
-    ) return []
-
-    if (
-      LandCardsCharacteristics[westCardItem?.id as LandCard]?.portal &&
-      LandCardsCharacteristics[eastCardItem?.id as LandCard]?.portal
-    ) {
-      this.memorize(Memory.TravelerToWelcome, 2)
-      return []
-    }
-
-    if (LandCardsCharacteristics[westCardItem?.id as LandCard]?.portal) {
-      return this.fetchAdjacentPortal(westCard, Direction.West)
-    }
-
-    if (LandCardsCharacteristics[eastCardItem?.id as LandCard]?.portal) {
-      return this.fetchAdjacentPortal(eastCard, Direction.East)
-    }
-
-    return []
-  }
-
-  fetchAdjacentPortal(card: Material, direction: Direction): MaterialMove[] {
-    const item = card.getItem()!
-    const coordinates = { x: item.location.x, y: item.location.y }
-    const adjacentCoordinates = getSquareInDirection(coordinates, direction)
-    const adjacentCard = this.panorama.location((l) => l.x === adjacentCoordinates.x && l.y === adjacentCoordinates.y).getItem()
-    if (LandCardsCharacteristics[adjacentCard?.id as LandCard]?.portal) {
-      return [this.playedCard.rotateItem(true)]
-    } else {
-      this.memorize(Memory.TravelerToWelcome, 1)
-      return []
-    }
-  }
-
   get panorama() {
     return this
       .material(MaterialType.LandCard)
       .location(LocationType.Tableau)
       .player(this.player)
+      .filter((item) => this.isNotDisabled(item))
   }
 
   get playerTravelers() {
@@ -146,9 +97,7 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
 
   onRuleEnd() {
     this.forget(Memory.TravelerToWelcome)
-    this.forget(Memory.PlayedLand)
     return []
   }
-
 
 }

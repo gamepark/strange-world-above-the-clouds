@@ -1,7 +1,4 @@
-import { isMoveItemType, ItemMove, Location, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { isSwamp, isVolcano, isWater } from '../LandType'
-import { LandCard } from '../material/LandCard'
-import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
+import { isMoveItemType, ItemMove, Location, PlayerTurnRule } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { PlayerColor } from '../PlayerColor'
@@ -10,6 +7,10 @@ import { Memory } from './Memory'
 import { RuleId } from './RuleId'
 
 export class PlayLandCardRule extends PlayerTurnRule {
+  onRuleStart() {
+    this.forget(Memory.PlayedLand)
+    return []
+  }
 
   getPlayerMoves() {
     const helper = new TableauHelper(this.game, this.player)
@@ -22,37 +23,8 @@ export class PlayLandCardRule extends PlayerTurnRule {
 
   afterItemMove(move: ItemMove) {
     if (!isMoveItemType(MaterialType.LandCard)(move) || move.location.rotation !== undefined) return []
-    const card = this.material(move.itemType).index(move.itemIndex)
     this.memorize(Memory.PlayedLand, move.itemIndex)
-    const item = card.getItem()!
-    const moves: MaterialMove[] = []
-    const characteristics = LandCardsCharacteristics[item.id as LandCard]
-    const colors = characteristics?.colors ?? []
-    if (isVolcano(colors)) return [this.startRule(RuleId.Volcano)]
-    if (isWater(colors)) return [this.startRule(RuleId.Water)]
-    if (isSwamp(colors)) return [this.startRule(RuleId.Swamp)]
-    if (characteristics.moon) return [this.startRule(RuleId.Moon)]
-    if (characteristics?.portal) return [this.startRule(RuleId.WelcomingTraveler)]
-    if (this.allCardsPlaces) {
-      moves.push(this.startRule(RuleId.Deal))
-    } else {
-      moves.push(this.startPlayerTurn(RuleId.PlayLandCard, this.nextPlayer))
-    }
-
-    return moves
-  }
-
-  get panorama() {
-    return this
-      .material(MaterialType.LandCard)
-      .location(LocationType.Tableau)
-      .player(this.player)
-  }
-
-  get allCardsPlaces() {
-    return this.game
-      .players
-      .every((p) => this.getHand(p).length === 0)
+    return [this.startRule(RuleId.DesolationOfTheTzimime)]
   }
 
   getHand(player: PlayerColor) {

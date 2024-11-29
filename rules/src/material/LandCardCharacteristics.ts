@@ -25,6 +25,10 @@ export const LandCardsCharacteristics: Record<LandCard, LandCardCharacteristics>
     colors: [LandType.Water],
     portal: true,
   },
+  [LandCard.Red1]: {
+    colors: [LandType.Volcano],
+    portal: true,
+  },
   [LandCard.LandBlueGreen1]: {
     colors: [LandType.Water, LandType.Plant],
   },
@@ -65,8 +69,7 @@ export const LandCardsCharacteristics: Record<LandCard, LandCardCharacteristics>
     colors: [LandType.Plant, LandType.Plant],
   },
   [LandCard.LandRedBlue1]: {
-    colors: [LandType.Volcano, LandType.Water],
-    portal: true,
+    colors: [LandType.Volcano, LandType.Water]
   },
   [LandCard.LandRedGrayGray1]: {
     colors: [LandType.Volcano, LandType.Snow, LandType.Snow],
