@@ -9,6 +9,11 @@ import { RuleId } from './RuleId'
 
 export class BasePlayedCardRule extends PlayerTurnRule {
   goToNextRule() {
+
+    if (this.game.players.every((p) => new TableauHelper(this.game, p).isFull)) {
+      return [this.endGame()]
+    }
+
     if (this.allCardsPlaces) {
       return [this.startRule(RuleId.Deal)]
     } else {

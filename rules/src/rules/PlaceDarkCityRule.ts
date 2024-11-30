@@ -1,4 +1,4 @@
-import { isMoveItemType, ItemMove, Location, MaterialMove } from '@gamepark/rules-api'
+import { isMoveItemType, ItemMove, MaterialMove } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
@@ -37,14 +37,6 @@ export class PlaceDarkCityRule extends BasePlayedCardRule {
 
   get adjacentFumarole() {
     return getAdjacentFumarole(this.panorama, this.playerDarkCities, this.placedFumarole.getItem()!.location)
-  }
-
-  hasDarkCitiesOnIt(location: Location) {
-    return this.playerDarkCities
-      .getItems()
-      .some((item) =>
-        Math.abs(location.x! - (item.location.x!)) === 0.5 ||
-        Math.abs(location.y! - (item.location.y!)) === 0.5)
   }
 
   get placedFumarole() {
