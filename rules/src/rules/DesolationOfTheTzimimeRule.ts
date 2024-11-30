@@ -3,6 +3,8 @@ import isEqual from 'lodash/isEqual'
 import { isSwamp, isVolcano, isWater } from '../LandType'
 import { LandCard } from '../material/LandCard'
 import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
+import { LocationType } from '../material/LocationType'
+import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
 import { TableauHelper } from './helpers/TableauHelper'
 import { Memory } from './Memory'
@@ -113,6 +115,8 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
   }
 
   onPortal(): MaterialMove[] {
+    const travelers = this.travelerStack
+    if (!travelers.length) return []
     const card = this.playedCard
     const item = card.getItem()!
     const coordinates = { x: item.location.x, y: item.location.y }
@@ -145,6 +149,12 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     }
 
     return []
+  }
+
+  get travelerStack() {
+    return this
+      .material(MaterialType.TravelerCard)
+      .location(LocationType.TravelerStack)
   }
 
   fetchAdjacentPortal(card: Material, direction: Direction): MaterialMove[] {

@@ -6,7 +6,7 @@ export class PlayerHandLocator extends HandLocator {
   getCoordinates(location: Location, context: MaterialContext) {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
     coordinates.y! += 18
-    coordinates.z = 0.05
+    coordinates.z = 1.5
     return coordinates
   }
 

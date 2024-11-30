@@ -63,10 +63,6 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
   giveTime(): number {
     return 60
   }
-
-  itemsCanMerge(): boolean {
-    return false
-  }
 }
 
 export const showIdForPlayerThatPlace = <P extends number = number, L extends number = number>(
