@@ -15,6 +15,6 @@ const hasDarkCitiesOnIt = (darkCities: Material, location: Location) => {
   return darkCities
     .getItems()
     .some((item) =>
-      Math.abs(location.x! - (item.location.x!)) === 0.5 ||
-      Math.abs(location.y! - (item.location.y!)) === 0.5)
+      (Math.abs(location.x! - (item.location.x!)) === 0.5 && location.y === item.location.y) ||
+      Math.abs(location.y! - (item.location.y!)) === 0.5 && location.x === item.location.x)
 }

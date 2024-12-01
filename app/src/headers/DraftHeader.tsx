@@ -14,7 +14,7 @@ export const DraftHeader = () => {
   const placedCardCount = rules.getPlacedCards(player).length
   if (cardToPlace === placedCardCount && game.rule?.players?.includes(player)) {
     return (
-      <PlayMoveButton move={move} auto={15}>
+      <PlayMoveButton move={move} auto={5}>
         Valider le draft
       </PlayMoveButton>
     )

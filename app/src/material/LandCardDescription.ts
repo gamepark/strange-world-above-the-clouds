@@ -63,6 +63,7 @@ export class LandCardDescription extends CardDescription {
     if (item.location?.type === LocationType.Tableau && item.location.rotation) return true
     return super.isFlippedOnTable(item, context)
   }
+
 }
 
 export const landCardDescription = new LandCardDescription()

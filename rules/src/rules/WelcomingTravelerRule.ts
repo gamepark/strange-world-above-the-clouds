@@ -22,19 +22,19 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
     const moves: MaterialMove[] = []
     if (!playerTravelers.length) {
       moves.push(
-        ...this.moveTravelerToTableau(playedCard, boundaries.xMin - 1, travelers, 0),
-        ...this.moveTravelerToTableau(playedCard, boundaries.xMax + 1, travelers, 0),
-        ...this.moveTravelerToTableau(playedCard, boundaries.xMin - 1, travelers, -1),
-        ...this.moveTravelerToTableau(playedCard, boundaries.xMax + 1, travelers, -1)
+        ...this.moveTravelerToTableau(playedCard, boundaries.xMin - 1, travelers, 0.5),
+        ...this.moveTravelerToTableau(playedCard, boundaries.xMax + 1, travelers, 0.5),
+        ...this.moveTravelerToTableau(playedCard, boundaries.xMin - 1, travelers, -0.5),
+        ...this.moveTravelerToTableau(playedCard, boundaries.xMax + 1, travelers, -0.5)
       )
     } else {
       const firstTraveler = playerTravelers.getItem()!
-      const top = this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, 0)
-      const bottom = this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, -1)
+      const top = this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, 0.5)
+      const bottom = this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, -0.5)
       if (!top.length && !bottom.length) {
         moves.push(
-          ...this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, 0, true),
-          ...this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, -1, true),
+          ...this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, 0.5, true),
+          ...this.moveTravelerToTableau(playedCard, firstTraveler.location.x!, travelers, -0.5, true),
         )
       } else {
         moves.push(
@@ -78,14 +78,6 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
 
   get travelerCount() {
     return this.remind(Memory.TravelerToWelcome) ?? 0
-  }
-
-  get panorama() {
-    return this
-      .material(MaterialType.LandCard)
-      .location(LocationType.Tableau)
-      .player(this.player)
-      .filter((item) => this.isNotDisabled(item))
   }
 
   get playerTravelers() {

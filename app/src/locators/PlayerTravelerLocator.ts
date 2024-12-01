@@ -14,7 +14,7 @@ export class PlayerTravelerLocator extends Locator {
     const deltaForZ = location.x! < xMin? -1: 1
     return {
       x: x! + ((location.x!) - deltaX) * (landCardDescription.width + 0.1) + ((location.z ?? 0) * deltaForZ),
-      y: y! + ((location.y! + 0.5) - deltaY) * (landCardDescription.height + 0.1),
+      y: y! + ((location.y!) - deltaY) * (landCardDescription.height + 0.1),
       z: (location.z ?? 0) * 0.05
     }
   }

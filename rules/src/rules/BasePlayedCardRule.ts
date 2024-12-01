@@ -21,8 +21,8 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     }
   }
 
-  isNotDisabled(item: MaterialItem) {
-    return !item.location.rotation && item.id !== LandCard.Fumarole
+  isNotFumarole(item: MaterialItem) {
+    return item.id !== LandCard.Fumarole
   }
 
   get panorama() {
@@ -30,6 +30,7 @@ export class BasePlayedCardRule extends PlayerTurnRule {
       .material(MaterialType.LandCard)
       .location(LocationType.Tableau)
       .player(this.player)
+      .rotation((r) => r === undefined)
   }
 
   get allCardsPlaces() {

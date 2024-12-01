@@ -9,7 +9,7 @@ export class TravelerStackLocator extends DeckLocator {
   coordinates = { x: 16, y: -24 }
 
   getCoordinates(_location: Location, context: ItemContext): Partial<Coordinates> {
-   if (context.rules.game.rule?.id === RuleId.WelcomingTraveler) {
+   if (context.rules.game.rule?.id === RuleId.WelcomingTraveler && context.rules.game.rule?.player === context.player) {
      const itemInStack = context.rules.material(MaterialType.TravelerCard).location(LocationType.TravelerStack).length
      const coordinates = { x: 0, y: -20, z: 10 }
      coordinates.x -= (itemInStack / 2 * (landCardDescription.width + 1)) - (0.5 * (landCardDescription.width + 1))
@@ -20,8 +20,7 @@ export class TravelerStackLocator extends DeckLocator {
   }
 
   getGap(_location: Location, context: ItemContext): Partial<Coordinates> {
-    console.log(context.rules.game.rule?.id)
-    if (context.rules.game.rule?.id === RuleId.WelcomingTraveler) {
+    if (context.rules.game.rule?.id === RuleId.WelcomingTraveler && context.rules.game.rule?.player === context.player) {
       return { x: landCardDescription.width + 1 }
     }
 

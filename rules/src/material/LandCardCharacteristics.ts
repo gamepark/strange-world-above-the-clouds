@@ -1,8 +1,19 @@
 import { LandType } from '../LandType'
 import { LandCard } from './LandCard'
 
+enum Animal {
+  Rat = 1,
+  Deer,
+  Spirit,
+  Bear,
+  Goat,
+  Phoenix,
+  Snake
+}
+
 type LandCardCharacteristics = {
-  colors?: LandType[],
+  types?: LandType[],
+  animals?: Animal[]
   portal?: boolean,
   moon?: boolean,
   fumarole?: boolean
@@ -10,85 +21,93 @@ type LandCardCharacteristics = {
 
 export const LandCardsCharacteristics: Record<LandCard, LandCardCharacteristics> = {
   [LandCard.StartingBlue]: {
-    colors: [LandType.Water],
+    types: [LandType.Water],
   },
   [LandCard.StartingGray]: {
-    colors: [LandType.Snow],
+    types: [LandType.Mountain],
   },
   [LandCard.StartingGreen]: {
-    colors: [LandType.Plant],
+    types: [LandType.Plant],
+    animals: [Animal.Bear]
   },
   [LandCard.StartingYellow]: {
-    colors: [LandType.Swamp],
+    types: [LandType.Swamp],
   },
   [LandCard.LandBlue1]: {
-    colors: [LandType.Water],
+    types: [LandType.Water],
     portal: true,
   },
   [LandCard.Red1]: {
-    colors: [LandType.Volcano],
+    types: [LandType.Volcano],
     portal: true,
   },
   [LandCard.LandBlueGreen1]: {
-    colors: [LandType.Water, LandType.Plant],
+    types: [LandType.Water, LandType.Plant],
+    animals: [Animal.Spirit]
   },
   [LandCard.LandBlueYellow1]: {
-    colors: [LandType.Water, LandType.Swamp],
+    types: [LandType.Water, LandType.Swamp],
   },
   [LandCard.Moon]: {
     moon: true
   },
   [LandCard.Red1]: {
-    colors: [LandType.Volcano],
+    types: [LandType.Volcano],
     portal: true,
   },
   [LandCard.LandGray1]: {
-    colors: [LandType.Snow],
+    types: [LandType.Mountain],
     portal: true,
   },
   [LandCard.LandGrayBlue1]: {
-    colors: [LandType.Snow, LandType.Water],
+    types: [LandType.Mountain, LandType.Water],
   },
   [LandCard.LandGrayGray1]: {
-    colors: [LandType.Snow, LandType.Snow],
+    types: [LandType.Mountain, LandType.Mountain],
   },
   [LandCard.LandGrayGreen1]: {
-    colors: [LandType.Snow, LandType.Plant],
+    types: [LandType.Mountain, LandType.Plant],
+    animals: [Animal.Goat]
   },
   [LandCard.LandGrayYellow1]: {
-    colors: [LandType.Snow, LandType.Swamp],
+    types: [LandType.Mountain, LandType.Swamp],
   },
   [LandCard.LandGreen1]: {
-    colors: [LandType.Plant],
+    types: [LandType.Plant],
+    animals: [Animal.Rat],
     portal: true,
   },
   [LandCard.LandGreenGreen1]: {
-    colors: [LandType.Plant, LandType.Plant],
+    types: [LandType.Plant, LandType.Plant],
+    animals: [Animal.Deer, Animal.Goat]
   },
   [LandCard.LandGreenGreen2]: {
-    colors: [LandType.Plant, LandType.Plant],
+    types: [LandType.Plant, LandType.Plant],
+    animals: [Animal.Deer, Animal.Spirit]
   },
   [LandCard.LandRedBlue1]: {
-    colors: [LandType.Volcano, LandType.Water]
+    types: [LandType.Volcano, LandType.Water]
   },
   [LandCard.LandRedGrayGray1]: {
-    colors: [LandType.Volcano, LandType.Snow, LandType.Snow],
+    types: [LandType.Volcano, LandType.Mountain, LandType.Mountain],
   },
 
   [LandCard.LandRedGreen1]: {
-    colors: [LandType.Volcano, LandType.Plant],
+    types: [LandType.Volcano, LandType.Plant],
+    animals: [Animal.Phoenix]
   },
   [LandCard.LandRedYellow1]: {
-    colors: [LandType.Volcano, LandType.Swamp],
+    types: [LandType.Volcano, LandType.Swamp],
   },
 
   [LandCard.LandYellow1]: {
-    colors: [LandType.Swamp],
+    types: [LandType.Swamp],
     portal: true,
   },
 
   [LandCard.LandYellowGreen1]: {
-    colors: [LandType.Swamp, LandType.Plant],
+    types: [LandType.Swamp, LandType.Plant],
+    animals: [Animal.Snake]
   },
 
   [LandCard.Fumarole]: {

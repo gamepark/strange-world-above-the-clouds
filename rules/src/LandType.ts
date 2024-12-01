@@ -1,5 +1,5 @@
 export enum LandType {
-  Water = 1, Snow, Plant, Swamp, Volcano
+  Water = 1, Mountain, Plant, Swamp, Volcano
 }
 
 export const isSwamp = (land: LandType) => land === LandType.Swamp;

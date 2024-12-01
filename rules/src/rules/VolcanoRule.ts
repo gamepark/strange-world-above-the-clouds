@@ -21,17 +21,14 @@ export class VolcanoRule extends BasePlayedCardRule {
 
   getPlayerMoves() {
     const adjacentCards = this.adjacentCards.getItems()
+    const fumaroles = this.fumaroles.deck()
     const moves: MaterialMove[] = []
     for (const item of adjacentCards) {
       moves.push(
-        this.material(MaterialType.LandCard)
-          .createItem({
-            id: LocationType.FumaroleStack,
-            location: {
-              ...item.location,
-              z: (item.location.z ?? 0) + 1
-            }
-          })
+        fumaroles.moveItem({
+          ...item.location,
+          z: (item.location.z ?? 0) + 1
+        })
       )
     }
 
@@ -44,7 +41,7 @@ export class VolcanoRule extends BasePlayedCardRule {
     const moves: MaterialMove[] = cardOnPlace.deleteItems()
     this.forget(Memory.PlayedLand, move.itemIndex)
 
-    const goToDarkCityPlacement = this.goToDarkCityPlacement(move)
+    const goToDarkCityPlacement = this.goToDarkCityPlacement(move);
     if (goToDarkCityPlacement.length) {
       moves.push(...goToDarkCityPlacement)
       return moves
@@ -57,6 +54,7 @@ export class VolcanoRule extends BasePlayedCardRule {
   goToDarkCityPlacement(move: MoveItem) {
     const adjacentCards = getAdjacentFumarole(this.panorama, this.playerDarkCities, move.location as Location)
 
+    console.log("Count adjacent", adjacentCards.length)
     if (this.darkCities.length && adjacentCards.length >= 1) {
       this.memorize(Memory.PlayedFumarole, move.itemIndex)
       return [this.startRule(RuleId.PlaceDarkCity)]
@@ -87,7 +85,7 @@ export class VolcanoRule extends BasePlayedCardRule {
       .filter((item) => getDistanceBetweenSquares(
         { x: item.location.x!, y: item.location.y! },
         { x: playedCardItem.location.x!, y: playedCardItem.location.y! }
-      ) === 1 && this.isNotDisabled(item))
+      ) === 1 && this.isNotFumarole(item))
   }
 
   get playerDarkCities() {

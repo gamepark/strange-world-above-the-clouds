@@ -16,7 +16,7 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     const playedItem = playedCard.getItem()!
     const moves: MaterialMove[] = []
     const characteristics = LandCardsCharacteristics[playedItem.id as LandCard]
-    const colors = characteristics?.colors ?? []
+    const colors = characteristics?.types ?? []
     let disabled = false
 
     if (characteristics.portal) {
@@ -105,11 +105,10 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     return this.panorama
       .getItems()
       .some((item) => {
-          const colors = LandCardsCharacteristics[item.id as LandCard]?.colors ?? []
+          const colors = LandCardsCharacteristics[item.id as LandCard]?.types ?? []
           return !isEqual(item, playedCardItem) &&
             item.location.y === playedCardItem.location.y &&
-            colors.some(isSwamp) &&
-            this.isNotDisabled(item)
+            colors.some(isSwamp)
         }
       )
   }
@@ -174,7 +173,7 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     return this.adjacentCards
       .getItems()
       .some((item) => {
-        const colors = LandCardsCharacteristics[item.id as LandCard]?.colors ?? []
+        const colors = LandCardsCharacteristics[item.id as LandCard]?.types ?? []
         return colors.some(isWater)
       })
   }
@@ -185,6 +184,6 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
       .filter((item) => getDistanceBetweenSquares(
         { x: item.location.x!, y: item.location.y! },
         { x: playedCardItem.location.x!, y: playedCardItem.location.y! }
-      ) === 1 && this.isNotDisabled(item))
+      ) === 1)
   }
 }
