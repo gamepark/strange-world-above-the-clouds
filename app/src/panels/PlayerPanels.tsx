@@ -1,15 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { StyledPlayerPanel, usePlayers } from '@gamepark/react-game'
 import { PlayerColor } from '@gamepark/strange-world-above-the-clouds/PlayerColor'
-import { StyledPlayerPanel, useGame, usePlayers } from '@gamepark/react-game'
-import { ScoringHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/ScoringHelper'
 import { createPortal } from 'react-dom'
-import { MaterialGame } from '@gamepark/rules-api'
-import LandBack from '../images/lands/LandBack.jpg'
 
 export const PlayerPanels = () => {
   const players = usePlayers<PlayerColor>({ sortFromMe: true })
-  const game = useGame<MaterialGame>()!
   const root = document.getElementById('root')
   if (!root) {
     return null
@@ -18,10 +14,7 @@ export const PlayerPanels = () => {
   return createPortal(
     <>
       {players.map((player, index) =>
-        <StyledPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={panelPosition(index)} mainCounter={{
-          image: LandBack,
-          value: new ScoringHelper(game, player.id).travelerScore
-        }}/>
+        <StyledPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={panelPosition(index)}/>
       )}
     </>,
     root

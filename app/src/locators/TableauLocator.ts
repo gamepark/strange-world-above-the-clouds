@@ -77,8 +77,6 @@ class TableauLocator extends Locator {
     return transform
   }
 
-  dropPreview = true
-
   locationDescription = new TableauSpotDescription()
 }
 

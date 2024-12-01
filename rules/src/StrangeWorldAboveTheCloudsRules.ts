@@ -1,4 +1,5 @@
 import {
+  CompetitiveScore,
   hideItemId,
   hideItemIdToOthers,
   MaterialGame,
@@ -14,6 +15,7 @@ import { PlayerColor } from './PlayerColor'
 import { DealRule } from './rules/DealRule'
 import { DesolationOfTheTzimimeRule } from './rules/DesolationOfTheTzimimeRule'
 import { DraftRule } from './rules/DraftRule'
+import { ScoringHelper } from './rules/helpers/ScoringHelper'
 import { PlaceDarkCityRule } from './rules/PlaceDarkCityRule'
 import { PlayLandCardRule } from './rules/PlayLandCardRule'
 import { RuleId } from './rules/RuleId'
@@ -26,7 +28,8 @@ import { WelcomingTravelerRule } from './rules/WelcomingTravelerRule'
  * It must follow Game Park "Rules" API so that the Game Park server can enforce the rules.
  */
 export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerColor, MaterialType, LocationType>
-  implements TimeLimit<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor> {
+  implements CompetitiveScore<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor>,
+    TimeLimit<MaterialGame<PlayerColor, MaterialType, LocationType>, MaterialMove<PlayerColor, MaterialType, LocationType>, PlayerColor> {
   rules = {
     [RuleId.Deal]: DealRule,
     [RuleId.Draft]: DraftRule,
@@ -58,6 +61,10 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
       [LocationType.Hand]: hideItemIdToOthers,
       [LocationType.DraftArea]: showIdForPlayerThatPlace
     }
+  }
+
+  getScore(playerId: PlayerColor): number {
+    return new ScoringHelper(this.game, playerId).score
   }
 
   giveTime(): number {
