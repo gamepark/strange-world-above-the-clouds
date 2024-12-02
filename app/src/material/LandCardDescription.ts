@@ -1,4 +1,4 @@
-import { CardDescription, MaterialContext } from '@gamepark/react-game'
+import { CardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
 import { MaterialItem } from '@gamepark/rules-api'
 import { LandCard } from '@gamepark/strange-world-above-the-clouds/material/LandCard'
 import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/LocationType'
@@ -62,6 +62,12 @@ export class LandCardDescription extends CardDescription {
     if (item.location?.type === LocationType.DraftArea) return true;
     if (item.location?.type === LocationType.Tableau && item.location.rotation) return true
     return super.isFlippedOnTable(item, context)
+  }
+
+  getHoverTransform(item: MaterialItem, context: ItemContext): string[] {
+    const locator = context.locators[item.location.type]
+    if (!locator) return []
+    return locator.getHoverTransform(item, context)
   }
 
 }

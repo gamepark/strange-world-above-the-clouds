@@ -1,8 +1,7 @@
-import { DropAreaDescription, getRelativePlayerIndex, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
+import { DropAreaDescription, FlatMaterialDescription, getRelativePlayerIndex, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, isMoveItem, isMoveItemType, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
-import isEqual from 'lodash/isEqual'
 import { landCardDescription } from '../material/LandCardDescription'
 
 export enum Position {
@@ -70,7 +69,8 @@ class TableauLocator extends Locator {
     const index = getRelativePlayerIndex(context, player)
     const isBottomPlayers = rules.players.length === 2 || (rules.players.length === 5? (index === 0 || index === 4): (rules.players.length === 4? (index === 0 || index === 3): index === 0))
     const helper =  new TableauHelper(context.rules.game, item.location.player!).boundaries
-    const transform = ['translateZ(10em)', 'scale(2)']
+    const isFlipped = (context.material[context.type]! as FlatMaterialDescription).isFlippedOnTable(item, context) ?? false
+    const transform = [`translateZ(${isFlipped? -10: 10}em)`, 'scale(2)']
     if (!isBottomPlayers && helper.yMin === item.location.y) transform.push('translateY(25%)')
     if (isBottomPlayers && helper.yMax === item.location.y) transform.push('translateY(-25%)')
 
@@ -83,13 +83,6 @@ class TableauLocator extends Locator {
 export class TableauSpotDescription extends DropAreaDescription {
   constructor() {
     super(landCardDescription)
-  }
-
-  canShortClick(move: MaterialMove, location: Location, { rules }: MaterialContext) {
-    return isMoveItemType(MaterialType.LandCard)(move)
-      && isEqual(move.location, location)
-      && rules.material(MaterialType.LandCard).getItem(move.itemIndex).selected === true
-
   }
 
   getBestDropMove(moves: MaterialMove[], _location: Location, context: ItemContext): MaterialMove {

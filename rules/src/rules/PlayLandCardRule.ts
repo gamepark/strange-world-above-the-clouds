@@ -47,7 +47,6 @@ export class PlayLandCardRule extends PlayerTurnRule {
       .location(LocationType.PlayerTraveler)
       .player(this.player)
 
-    console.log("FUCK YOU BIATCH")
     if (!travelers.length) return undefined
     return travelers.getItem()!.location.x
   }

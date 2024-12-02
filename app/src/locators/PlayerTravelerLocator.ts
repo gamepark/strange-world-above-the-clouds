@@ -1,5 +1,5 @@
-import { Locator, MaterialContext } from '@gamepark/react-game'
-import { Location } from '@gamepark/rules-api'
+import { ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
+import { Location, MaterialItem } from '@gamepark/rules-api'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
 import { landCardDescription } from '../material/LandCardDescription'
 import { tableauLocator } from './TableauLocator'
@@ -19,8 +19,20 @@ export class PlayerTravelerLocator extends Locator {
     }
   }
 
-  getHoverTransform(): string[] {
-    return ['translateZ(10em)', 'scale(2)']
+  getHoverTransform(item: MaterialItem, context: ItemContext): string[] {
+    const boundaries = new TableauHelper(context.rules.game, item.location.player!).boundaries
+    const transform = ['translateZ(10em)', 'scale(2)']
+    if (item.location.x! <= boundaries.xMin) {
+      if (item.location.z! >= 1) transform.push('translateX(28%)')
+      if (item.location.z === 0) transform.push('translateX(20%)')
+    }
+
+    if (item.location.x! > boundaries.xMax) {
+      if (item.location.z! >= 1) transform.push('translateX(-28%)')
+      if (item.location.z === 0) transform.push('translateX(-20%)')
+    }
+
+    return transform
   }
 }
 

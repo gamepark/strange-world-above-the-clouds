@@ -54,7 +54,6 @@ export class VolcanoRule extends BasePlayedCardRule {
   goToDarkCityPlacement(move: MoveItem) {
     const adjacentCards = getAdjacentFumarole(this.panorama, this.playerDarkCities, move.location as Location)
 
-    console.log("Count adjacent", adjacentCards.length)
     if (this.darkCities.length && adjacentCards.length >= 1) {
       this.memorize(Memory.PlayedFumarole, move.itemIndex)
       return [this.startRule(RuleId.PlaceDarkCity)]

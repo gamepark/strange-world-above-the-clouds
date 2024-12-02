@@ -33,6 +33,12 @@ export class DarkCitiesDescription extends CardDescription {
     return super.isFlippedOnTable(item, context)
   }
 
+  getHoverTransform(item: MaterialItem, context: ItemContext): string[] {
+    const locator = context.locators[item.location.type]
+    if (!locator) return []
+    return locator.getHoverTransform(item, context)
+  }
+
   getItemExtraCss(item: MaterialItem, _context: ItemContext): Interpolation<Theme> {
     if (item.location?.type === LocationType.Tableau) {
       return css`
