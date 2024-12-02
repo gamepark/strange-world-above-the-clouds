@@ -24,9 +24,10 @@ export class VolcanoRule extends BasePlayedCardRule {
     const fumaroles = this.fumaroles.deck()
     const moves: MaterialMove[] = []
     for (const item of adjacentCards) {
+      const { rotation, ...location } = item.location
       moves.push(
         fumaroles.moveItem({
-          ...item.location,
+          ...location,
           z: (item.location.z ?? 0) + 1
         })
       )
@@ -84,7 +85,15 @@ export class VolcanoRule extends BasePlayedCardRule {
       .filter((item) => getDistanceBetweenSquares(
         { x: item.location.x!, y: item.location.y! },
         { x: playedCardItem.location.x!, y: playedCardItem.location.y! }
-      ) === 1 && this.isNotFumarole(item))
+      ) === 1)
+  }
+
+  get panorama() {
+    return this
+      .material(MaterialType.LandCard)
+      .location(LocationType.Tableau)
+      .player(this.player)
+      .filter((item) => this.isNotFumarole(item))
   }
 
   get playerDarkCities() {
