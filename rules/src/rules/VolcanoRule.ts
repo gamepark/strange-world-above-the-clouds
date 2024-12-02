@@ -85,7 +85,7 @@ export class VolcanoRule extends BasePlayedCardRule {
       .filter((item) => getDistanceBetweenSquares(
         { x: item.location.x!, y: item.location.y! },
         { x: playedCardItem.location.x!, y: playedCardItem.location.y! }
-      ) === 1)
+      ) === 1 && this.isNotFumarole(item))
   }
 
   get panorama() {
@@ -93,7 +93,6 @@ export class VolcanoRule extends BasePlayedCardRule {
       .material(MaterialType.LandCard)
       .location(LocationType.Tableau)
       .player(this.player)
-      .filter((item) => this.isNotFumarole(item))
   }
 
   get playerDarkCities() {

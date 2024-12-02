@@ -5,7 +5,7 @@ import { StyledPlayerPanel, useGame, usePlayers } from '@gamepark/react-game'
 import { ScoringHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/ScoringHelper'
 import { createPortal } from 'react-dom'
 import { MaterialGame } from '@gamepark/rules-api'
-import LandBack from '../images/lands/LandBack.jpg'
+import Star from '../images/icons/star.png'
 
 export const PlayerPanels = () => {
   const players = usePlayers<PlayerColor>({ sortFromMe: true })
@@ -19,8 +19,8 @@ export const PlayerPanels = () => {
     <>
       {players.map((player, index) =>
         <StyledPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={panelPosition(index)} mainCounter={{
-          image: LandBack,
-          value: new ScoringHelper(game, player.id).travelerScore
+          image: Star,
+          value: new ScoringHelper(game, player.id).score
         }}/>
       )}
     </>,
