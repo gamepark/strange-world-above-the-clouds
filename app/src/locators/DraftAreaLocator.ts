@@ -65,13 +65,19 @@ export class DraftAreaLocator extends ListLocator {
 
   getLocationCoordinates(location: Location, context: MaterialContext, index: number | undefined = this.getLocationIndex(location, context)): Partial<Coordinates> {
     const coordinates = super.getLocationCoordinates(location, context, index)
+    const playerIndex = getRelativePlayerIndex(context, location.player)
+    const position = playerPositions[context.rules.players.length - 2][playerIndex]
     if (isItemContext(context)) return coordinates
     if (context.rules.players.length === 2) {
       coordinates.x! -= 11.4
       return coordinates
     }
 
-    coordinates.y! -= 9.5
+    if (position === Position.BottomLeft || position === Position.TopLeft) {
+      coordinates.y! -= 9.5
+    } else {
+      coordinates.y! += 9.5
+    }
     return coordinates
   }
 

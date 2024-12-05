@@ -13,13 +13,28 @@ export class DraftRule extends SimultaneousRule {
       return [this.endPlayerTurn(player)]
     }
 
-    // TODO: Manage more than 2 player games by checking the first player card rotation
-    const targetedPlayer = this.game.players[(this.game.players.indexOf(player) + 1) % this.game.players.length]
+    const targetedPlayer = this.getNextPlayer(player)
+    console.log(player, targetedPlayer)
     return hand.moveItems({
       type: LocationType.DraftArea,
       id: player,
       player: targetedPlayer
     })
+  }
+
+  getNextPlayer(player: PlayerColor) {
+    if (this.turnOrderCard?.rotation) {
+      const previousIndex = this.game.players.indexOf(player) - 1
+      if (previousIndex < 0) return this.game.players[this.game.players.length - 1]
+      return this.game.players[previousIndex - 1]
+    }
+
+    return this.game.players[(this.game.players.indexOf(player) + 1) % this.game.players.length]
+  }
+
+  get turnOrderCard() {
+    return this.material(MaterialType.FirstPlayerCard)
+      .getItem()?.location
   }
 
   get draftStep() {
@@ -60,7 +75,8 @@ export class DraftRule extends SimultaneousRule {
     if (this.draftStep === 2) {
       this.forget(Memory.DraftStep)
       // TODO: First player has the first player card
-      moves.push(this.startPlayerTurn(RuleId.PlayLandCard, this.game.players[0]))
+      const firstPlayer = this.turnOrderCard?.player!
+      moves.push(this.startPlayerTurn(RuleId.PlayLandCard, firstPlayer))
     } else {
       this.memorize(Memory.DraftStep, (step: number = 1) => step + 1)
       moves.push(this.startSimultaneousRule(RuleId.Draft, this.game.players))

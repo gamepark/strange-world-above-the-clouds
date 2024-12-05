@@ -4,9 +4,9 @@ import { landDeckLocator } from './LandDeckLocator'
 
 class DarkCityStackLocator extends DeckLocator {
 
-  getCoordinates(_location: Location, context: MaterialContext) {
+  getCoordinates(location: Location, context: MaterialContext) {
     if (context.rules.game.players.length === 2) return { x: 0, y: -24 }
-    return { x: 0, y: landDeckLocator.coordinates.y! + 9.5 }
+    return { x: 0, y: landDeckLocator.getCoordinates(location, context).y! + 9.5 }
   }
 
   getHoverTransform(_item: MaterialItem): string[] {

@@ -21,6 +21,21 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     }
   }
 
+  get nextPlayer() {
+    if (this.turnOrderCard) {
+      const previousIndex = this.game.players.indexOf(this.player) - 1
+      if (previousIndex < 0) return this.game.players[this.game.players.length - 1]
+      return this.game.players[previousIndex - 1]
+    }
+
+    return this.game.players[(this.game.players.indexOf(this.player) + 1) % this.game.players.length]
+  }
+
+  get turnOrderCard() {
+    return this.material(MaterialType.FirstPlayerCard)
+      .getItem()?.location.rotation
+  }
+
   isNotFumarole(item: MaterialItem) {
     return item.id !== LandCard.Fumarole
   }

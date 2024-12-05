@@ -3,9 +3,9 @@ import { Location } from '@gamepark/rules-api/dist/material/location/Location'
 import { darkCityStackLocator } from './DarkCityStack'
 
 export class FumaroleStackLocator extends DeckLocator {
-  getCoordinates(_location: Location, context: MaterialContext) {
+  getCoordinates(location: Location, context: MaterialContext) {
     if (context.rules.game.players.length === 2) return { x: 8, y: -24 }
-    return { x: 0, y: darkCityStackLocator.coordinates.y! + 9.5 }
+    return { x: 0, y: darkCityStackLocator.getCoordinates(location, context).y! + 9.5 }
   }
 }
 

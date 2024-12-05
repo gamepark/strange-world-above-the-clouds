@@ -8,16 +8,16 @@ import { fumaroleStackLocator } from './FumaroleStackLocator'
 
 export class TravelerStackLocator extends DeckLocator {
 
-  getCoordinates(_location: Location, context: ItemContext): Partial<Coordinates> {
+  getCoordinates(location: Location, context: ItemContext): Partial<Coordinates> {
    if (context.rules.game.rule?.id === RuleId.WelcomingTraveler && context.rules.game.rule?.player === context.player) {
      const itemInStack = context.rules.material(MaterialType.TravelerCard).location(LocationType.TravelerStack).length
-     const coordinates = { x: 0, y: -20, z: 10 }
+     const coordinates = { x: 0, y: context.rules.players.length === 2? -20: -15, z: 10 }
      coordinates.x -= (itemInStack / 2 * (landCardDescription.width + 1)) - (0.5 * (landCardDescription.width + 1))
      return coordinates
    }
 
     if (context.rules.game.players.length === 2) return { x: 16, y: -24 }
-    return { x: 0, y: fumaroleStackLocator.coordinates.y! + 9.5 }
+    return { x: 0, y: fumaroleStackLocator.getCoordinates(location, context).y! + 9.5 }
   }
 
   getGap(_location: Location, context: ItemContext): Partial<Coordinates> {

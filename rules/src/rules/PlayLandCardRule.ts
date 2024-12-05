@@ -39,7 +39,7 @@ export class PlayLandCardRule extends PlayerTurnRule {
     if (travelerX === undefined) return false
     const boundaries = new TableauHelper(this.game, this.player).boundaries
     if (travelerX < boundaries.xMin) return location.x! <= travelerX
-    return location.x! > travelerX
+    return location.x! >= travelerX
   }
 
   get travelerX() {
