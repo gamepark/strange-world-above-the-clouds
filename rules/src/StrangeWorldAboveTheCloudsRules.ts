@@ -12,6 +12,7 @@ import {
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
+import { ChooseTurnOrderRule } from './rules/ChooseTurnOrderRule'
 import { DealRule } from './rules/DealRule'
 import { DesolationOfTheTzimimeRule } from './rules/DesolationOfTheTzimimeRule'
 import { DraftRule } from './rules/DraftRule'
@@ -37,7 +38,8 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
     [RuleId.WelcomingTraveler]: WelcomingTravelerRule,
     [RuleId.Volcano]: VolcanoRule,
     [RuleId.DesolationOfTheTzimime]: DesolationOfTheTzimimeRule,
-    [RuleId.PlaceDarkCity]: PlaceDarkCityRule
+    [RuleId.PlaceDarkCity]: PlaceDarkCityRule,
+    [RuleId.ChooseTurnOrder]: ChooseTurnOrderRule
   }
 
   locationsStrategies = {

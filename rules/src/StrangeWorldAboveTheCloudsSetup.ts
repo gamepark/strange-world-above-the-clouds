@@ -94,7 +94,11 @@ export class StrangeWorldAboveTheCloudsSetup extends MaterialGameSetup<PlayerCol
   }
 
   start() {
-    this.startRule(RuleId.Deal)
+    if (this.players.length > 2) {
+      this.startPlayerTurn(RuleId.ChooseTurnOrder, this.players[0])
+    } else {
+      this.startRule(RuleId.Deal)
+    }
   }
 }
 

@@ -6,5 +6,6 @@ export enum LocationType {
   FumaroleStack,
   TravelerStack,
   DraftArea,
-  PlayerTraveler
+  PlayerTraveler,
+  TurnOrder,
 }

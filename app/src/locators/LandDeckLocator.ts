@@ -1,7 +1,11 @@
-import { DeckLocator } from '@gamepark/react-game'
+import { DeckLocator, MaterialContext } from '@gamepark/react-game'
+import { Location } from '@gamepark/rules-api'
 
 export class LandDeckLocator extends DeckLocator {
-  coordinates = { x: -8, y: -24 }
+  getCoordinates(_location: Location, context: MaterialContext) {
+    if (context.rules.game.players.length === 2) return { x: -8, y: -24 }
+    return { x: 0, y: -10 }
+  }
   limit = 20
 }
 

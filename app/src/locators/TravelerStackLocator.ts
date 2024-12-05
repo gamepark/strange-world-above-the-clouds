@@ -4,9 +4,9 @@ import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { RuleId } from '@gamepark/strange-world-above-the-clouds/rules/RuleId'
 import { landCardDescription } from '../material/LandCardDescription'
+import { fumaroleStackLocator } from './FumaroleStackLocator'
 
 export class TravelerStackLocator extends DeckLocator {
-  coordinates = { x: 16, y: -24 }
 
   getCoordinates(_location: Location, context: ItemContext): Partial<Coordinates> {
    if (context.rules.game.rule?.id === RuleId.WelcomingTraveler && context.rules.game.rule?.player === context.player) {
@@ -16,7 +16,8 @@ export class TravelerStackLocator extends DeckLocator {
      return coordinates
    }
 
-    return this.coordinates
+    if (context.rules.game.players.length === 2) return { x: 16, y: -24 }
+    return { x: 0, y: fumaroleStackLocator.coordinates.y! + 9.5 }
   }
 
   getGap(_location: Location, context: ItemContext): Partial<Coordinates> {

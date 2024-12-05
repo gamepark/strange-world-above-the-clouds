@@ -10,6 +10,7 @@ import { playerHandLocator } from './PlayerHandLocator'
 import { tableauLocator } from './TableauLocator'
 import { travelerStackLocator } from './TravelerStackLocator'
 import { playerTravelerLocator } from './PlayerTravelerLocator'
+import { turnOrderLocator } from './TurnOrderLocator'
 
 export const Locators: Partial<Record<LocationType, Locator<PlayerColor, MaterialType, LocationType>>> = {
   [LocationType.LandDeck]: landDeckLocator,
@@ -19,5 +20,6 @@ export const Locators: Partial<Record<LocationType, Locator<PlayerColor, Materia
   [LocationType.Hand]: playerHandLocator,
   [LocationType.DraftArea]: draftAreaLocator,
   [LocationType.TravelerStack]: travelerStackLocator,
-  [LocationType.PlayerTraveler]: playerTravelerLocator
+  [LocationType.PlayerTraveler]: playerTravelerLocator,
+  [LocationType.TurnOrder]: turnOrderLocator
 }

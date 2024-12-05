@@ -7,5 +7,6 @@ export enum RuleId {
   Swamp,
   Water,
   DesolationOfTheTzimime,
-  PlaceDarkCity
+  PlaceDarkCity,
+  ChooseTurnOrder
 }
