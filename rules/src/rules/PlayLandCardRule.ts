@@ -9,6 +9,7 @@ import { RuleId } from './RuleId'
 export class PlayLandCardRule extends PlayerTurnRule {
   onRuleStart() {
     this.forget(Memory.PlayedLand)
+    this.forget(Memory.DesolationKind)
     return []
   }
 

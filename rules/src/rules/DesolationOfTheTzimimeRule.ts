@@ -6,9 +6,17 @@ import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { BasePlayedCardRule } from './BasePlayedCardRule'
+import { CustomMoveType } from './CustomMoveType'
 import { TableauHelper } from './helpers/TableauHelper'
 import { Memory } from './Memory'
 import { RuleId } from './RuleId'
+
+export enum DesolationKind {
+  Water = 1,
+  Swamp,
+  Portal,
+  Moon
+}
 
 export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
   onRuleStart() {
@@ -22,9 +30,8 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     if (characteristics.portal) {
       const onPortal = this.onPortal()
       if (onPortal.length) {
-        disabled = true
+        this.memorize(Memory.DesolationKind, DesolationKind.Portal)
         moves.push(...onPortal)
-        moves.push(...this.goToNextRule())
         this.forget(Memory.TravelerToWelcome)
         return moves
       }
@@ -33,9 +40,9 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     for (const color of colors) {
       if (isWater(color) && !disabled) {
         if (this.hasAdjacentWaterLand) {
+          this.memorize(Memory.DesolationKind, DesolationKind.Water)
           disabled = true
           moves.push(playedCard.rotateItem(true))
-          moves.push(...this.goToNextRule())
           this.forget(Memory.TravelerToWelcome)
           return moves
         }
@@ -43,9 +50,9 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
 
       if (isSwamp(color) && !disabled) {
         if (this.hasSwampInSameLine) {
+          this.memorize(Memory.DesolationKind, DesolationKind.Swamp)
           disabled = true
           moves.push(playedCard.rotateItem(true))
-          moves.push(...this.goToNextRule())
           this.forget(Memory.TravelerToWelcome)
           return moves
         }
@@ -55,12 +62,21 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     if (!disabled) {
       const disablePlacedMoon = this.disabledPlacedMoon()
       if (disablePlacedMoon.length) {
+        this.memorize(Memory.DesolationKind, DesolationKind.Moon)
         moves.push(...disablePlacedMoon)
         disabled = true
       }
     }
 
-    moves.push(...this.disableOtherMoons())
+    const disablingOtherMoons = this.disableOtherMoons()
+    if (disablingOtherMoons.length) {
+      this.memorize(Memory.DesolationKind, DesolationKind.Moon)
+      moves.push(...disablingOtherMoons)
+    }
+
+    if (this.remind(Memory.DesolationKind) === DesolationKind.Moon) {
+      return moves
+    }
 
     if (!disabled) {
       const travelerToWelcome = this.remind(Memory.TravelerToWelcome)
@@ -77,6 +93,32 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
 
     moves.push(...this.goToNextRule())
     return moves
+  }
+
+  getPlayerMoves() {
+    const moves: MaterialMove[] = []
+    moves.push(this.customMove(CustomMoveType.ValidateDesolation))
+    return moves
+  }
+
+  onCustomMove() {
+    const travelerToWelcome = this.remind(Memory.TravelerToWelcome)
+    const playedCard = this.playedCard
+    const playedItem = playedCard.getItem()!
+    if (!playedItem.location.rotation) {
+      if (travelerToWelcome) {
+        return [this.startRule(RuleId.WelcomingTraveler)]
+      }
+
+      const characteristics = LandCardsCharacteristics[playedItem.id as LandCard]
+      const colors = characteristics?.types ?? []
+
+      if (colors.some(isVolcano)) {
+        return [this.startRule(RuleId.Volcano)]
+      }
+    }
+
+    return this.goToNextRule()
   }
 
   disabledPlacedMoon() {

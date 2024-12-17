@@ -75,8 +75,13 @@ export class DraftRule extends SimultaneousRule {
     if (this.draftStep === 2) {
       this.forget(Memory.DraftStep)
       // TODO: First player has the first player card
-      const firstPlayer = this.turnOrderCard?.player!
-      moves.push(this.startPlayerTurn(RuleId.PlayLandCard, firstPlayer))
+      if (this.game.players.length > 2) {
+        const firstPlayer = this.turnOrderCard?.player!
+        moves.push(this.startPlayerTurn(RuleId.PlayLandCard, firstPlayer))
+      } else {
+        moves.push(this.startPlayerTurn(RuleId.PlayLandCard, this.game.players[0]))
+      }
+
     } else {
       this.memorize(Memory.DraftStep, (step: number = 1) => step + 1)
       moves.push(this.startSimultaneousRule(RuleId.Draft, this.game.players))

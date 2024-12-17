@@ -61,12 +61,6 @@ export class BasePlayedCardRule extends PlayerTurnRule {
       .player(player)
   }
 
-  get isEnd() {
-    return this.game
-      .players
-      .every((p) => new TableauHelper(this.game, p).isFull)
-  }
-
   get playedCard() {
     return this
       .material(MaterialType.LandCard)

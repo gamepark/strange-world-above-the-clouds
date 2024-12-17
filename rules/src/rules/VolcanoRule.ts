@@ -40,7 +40,7 @@ export class VolcanoRule extends BasePlayedCardRule {
     if (!isMoveItemType(MaterialType.LandCard)(move) || move.location.rotation) return []
     const cardOnPlace = this.panorama.location((l) => l.x === move.location.x && l.y === move.location.y)
     const moves: MaterialMove[] = cardOnPlace.deleteItems()
-    this.forget(Memory.PlayedLand, move.itemIndex)
+    this.memorize(Memory.PlayedLand, move.itemIndex)
 
     const goToDarkCityPlacement = this.goToDarkCityPlacement(move);
     if (goToDarkCityPlacement.length) {
