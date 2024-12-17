@@ -25,7 +25,7 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     if (this.turnOrderCard) {
       const previousIndex = this.game.players.indexOf(this.player) - 1
       if (previousIndex < 0) return this.game.players[this.game.players.length - 1]
-      return this.game.players[previousIndex - 1]
+      return this.game.players[previousIndex]
     }
 
     return this.game.players[(this.game.players.indexOf(this.player) + 1) % this.game.players.length]
