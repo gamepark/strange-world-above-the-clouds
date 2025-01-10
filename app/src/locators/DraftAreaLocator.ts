@@ -1,43 +1,16 @@
 import { DropAreaDescription, getRelativePlayerIndex, isItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
-import { Coordinates, Location } from '@gamepark/rules-api'
+import { Location } from '@gamepark/rules-api'
+import { PlayerColor } from '@gamepark/strange-world-above-the-clouds/PlayerColor'
 import { landCardDescription } from '../material/LandCardDescription'
 import { playerPositions, Position, tableauLocator } from './TableauLocator'
 
 export class DraftAreaLocator extends ListLocator {
-  gap = { x: 1 }
-
-  getGap(location: Location, context: MaterialContext) {
-    const playerIndex = getRelativePlayerIndex(context, location.player)
-    const position = playerPositions[context.rules.players.length - 2][playerIndex]
-
-    if (context.rules.players.length !== 2) {
-      if (!context.player === undefined || position !== Position.BottomLeft) {
-        return { y: 1, z: 1.5 }
-      }
-    }
-
-    return { x: 1, z: 1.5 }
-  }
+  gap = { x: 1, z: 1.5  }
 
   getCoordinates(location: Location, context: MaterialContext) {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
-    const playerIndex = getRelativePlayerIndex(context, location.player)
-    const position = playerPositions[context.rules.players.length - 2][playerIndex]
-
-    if (context.rules.players.length !== 2) {
-      if ((context.player === undefined && position === Position.BottomLeft) || position === Position.TopLeft) {
-        coordinates.y! += 11
-        coordinates.x! -= 25.5
-        coordinates.z = 1.5
-        return coordinates
-      }
-
-      if (position === Position.TopRight || position === Position.BottomRight) {
-        coordinates.y! -= 11
-        coordinates.x! += 25.5
-        coordinates.z = 1.5
-        return coordinates
-      }
+    if (context.rules.players.length > 2) {
+      return this.getMoreThanTwoPlayerCoordinates(location, context)
     }
 
     coordinates.y! += 18
@@ -46,39 +19,39 @@ export class DraftAreaLocator extends ListLocator {
     return coordinates
   }
 
-  getRotateZ(location: Location, context: MaterialContext): number {
+
+  getMoreThanTwoPlayerCoordinates(location: Location, context: MaterialContext) {
+    const tableauCoordinates = tableauLocator.getBaseCoordinates(location, context)
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]
-
-    if (context.rules.players.length !== 2) {
-      if ((context.player === undefined && position === Position.BottomLeft) || position === Position.TopLeft) {
-        return 90
-      }
-
-      if (position === Position.TopRight || position === Position.BottomRight) {
-        return -90
-      }
+    const cameFromRight = this.locationDescription.isRightPlayer(location.player!, location.id, context)
+    tableauCoordinates.z = 1.5
+    switch (position) {
+      case Position.TopLeft:
+        tableauCoordinates.x! += 26
+        return tableauCoordinates
+      case Position.BottomLeft:
+        tableauCoordinates.x! += 26
+        if (context.rules.players.length === 3) {
+          tableauCoordinates.y! += cameFromRight? 13.5: -13.5
+        }
+        return tableauCoordinates
+      case Position.TopCenter:
+          tableauCoordinates.y! += 13.5
+        if (context.rules.players.length === 3) {
+          tableauCoordinates.x! += cameFromRight? -26: 26
+        }
+        return tableauCoordinates
+      case Position.TopRight:
+        tableauCoordinates.x! -= 26
+        return tableauCoordinates
+      case Position.BottomRight:
+        tableauCoordinates.x! -= 26
+        if (context.rules.players.length === 3) {
+          tableauCoordinates.y! += cameFromRight? -13.5: 13.5
+        }
+        return tableauCoordinates
     }
-
-    return 0
-  }
-
-  getLocationCoordinates(location: Location, context: MaterialContext, index: number | undefined = this.getLocationIndex(location, context)): Partial<Coordinates> {
-    const coordinates = super.getLocationCoordinates(location, context, index)
-    const playerIndex = getRelativePlayerIndex(context, location.player)
-    const position = playerPositions[context.rules.players.length - 2][playerIndex]
-    if (isItemContext(context)) return coordinates
-    if (context.rules.players.length === 2) {
-      coordinates.x! -= 11.4
-      return coordinates
-    }
-
-    if (position === Position.BottomLeft || position === Position.TopLeft) {
-      coordinates.y! -= 9.5
-    } else {
-      coordinates.y! += 9.5
-    }
-    return coordinates
   }
 
   locationDescription = new DraftAreaDescription()
@@ -89,8 +62,20 @@ class DraftAreaDescription extends DropAreaDescription {
     super(landCardDescription)
   }
 
-  width = 30
-  height = landCardDescription.height + 1
+  getLocationSize(location: Location, context: MaterialContext) {
+    if (context.player === undefined || isItemContext(context)) return super.getLocationSize(location, context)
+    return {
+      width: 10,
+      height: 11
+    }
+  }
+
+  isRightPlayer(sourcePlayer: PlayerColor, player: PlayerColor, context: MaterialContext) {
+    const game = context.rules.game
+    const previousIndex = game.players.indexOf(sourcePlayer) - 1
+    if (previousIndex < 0) return game.players[game.players.length - 1] === player
+    return game.players[previousIndex] === player
+  }
 }
 
 

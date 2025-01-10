@@ -48,10 +48,16 @@ const getPositionCss = (position: Position) => {
     case Position.BottomRight:
       return bottomRight
     case Position.BottomLeft:
-    default:
       return bottomLeft
+    case Position.TopCenter:
+      return topCenter
   }
 }
+
+const topCenter = css`
+  top: 8.5em;
+  left: 40em;
+`
 
 const topLeft = css`
   top: 8.5em;

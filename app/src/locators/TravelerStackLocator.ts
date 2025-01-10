@@ -16,6 +16,8 @@ export class TravelerStackLocator extends DeckLocator {
      return coordinates
    }
 
+   const fumaroleCoordinates = fumaroleStackLocator.getCoordinates(location, context)
+    if (context.rules.game.players.length === 3) return { x: fumaroleCoordinates.x! + 7, y: fumaroleCoordinates.y! }
     if (context.rules.game.players.length === 2) return { x: 16, y: -24 }
     return { x: 0, y: fumaroleStackLocator.getCoordinates(location, context).y! + 9.5 }
   }

@@ -1,50 +1,13 @@
-import { getRelativePlayerIndex, ItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
+import { ItemContext, ListLocator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem } from '@gamepark/rules-api'
-import { playerPositions, Position, tableauLocator } from './TableauLocator'
 
 export class TurnOrderLocator extends ListLocator {
   gap = { x: 1 }
 
-  getCoordinates(location: Location, context: MaterialContext) {
-    const playerIndex = getRelativePlayerIndex(context, location.player)
-    const position = playerPositions[context.rules.players.length - 2][playerIndex]
-
-    const coordinates = tableauLocator.getBaseCoordinates(location, context)
-
-    if (context.rules.players.length !== 2) {
-      if ((context.player === undefined || position === Position.BottomLeft) || position === Position.TopLeft) {
-        coordinates.y! -= 14.5
-        coordinates.x! -= 25.5
-        return coordinates
-      }
-
-      if (position === Position.TopRight || position === Position.BottomRight) {
-        coordinates.y! -= 14.5
-        coordinates.x! += 25.5
-        return coordinates
-      }
-    }
-
-    coordinates.y! += 18
-    coordinates.x! -= 18
-    return coordinates
-  }
-
-  getRotateZ(location: Location, context: MaterialContext): number {
-    const playerIndex = getRelativePlayerIndex(context, location.player)
-    const position = playerPositions[context.rules.players.length - 2][playerIndex]
-
-    if (context.rules.players.length !== 2) {
-      if (context.player === undefined && (position === Position.TopLeft || position === Position.BottomLeft)) {
-        return 90
-      }
-
-      if (context.player === undefined && (position === Position.TopRight || position === Position.BottomRight)) {
-        return -90
-      }
-    }
-
-    return 0
+  getCoordinates(_location: Location, context: MaterialContext) {
+    if (context.rules.game.players.length === 3) return { x: 0, y: 0 }
+    if (context.rules.game.players.length === 2) return { x: -8, y: -24 }
+    return { x: 0, y: 20 }
   }
 
 

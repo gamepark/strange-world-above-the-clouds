@@ -14,7 +14,6 @@ export class DraftRule extends SimultaneousRule {
     }
 
     const targetedPlayer = this.getNextPlayer(player)
-    console.log(player, targetedPlayer)
     return hand.moveItems({
       type: LocationType.DraftArea,
       id: player,
@@ -26,7 +25,7 @@ export class DraftRule extends SimultaneousRule {
     if (this.turnOrderCard?.rotation) {
       const previousIndex = this.game.players.indexOf(player) - 1
       if (previousIndex < 0) return this.game.players[this.game.players.length - 1]
-      return this.game.players[previousIndex - 1]
+      return this.game.players[previousIndex]
     }
 
     return this.game.players[(this.game.players.indexOf(player) + 1) % this.game.players.length]
