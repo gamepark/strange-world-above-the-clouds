@@ -1,6 +1,6 @@
 import {
   CompetitiveScore,
-  hideItemId,
+  hideItemId, hideItemIdToOthers,
   MaterialGame,
   MaterialItem,
   MaterialMove,
