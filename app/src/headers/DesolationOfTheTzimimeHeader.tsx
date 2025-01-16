@@ -15,9 +15,9 @@ export const DesolationOfTheTzimimeHeader = () => {
   const [open, setOpen] = useState(true)
   const [undo] = useUndo()
   const rules = useRules<MaterialRules>()!
-  const desolationKind = rules.remind<DesolationKind>(Memory.DesolationKind)
   const pass = useLegalMove(isCustomMoveType(CustomMoveType.ValidateDesolation))
   const player = usePlayerId()
+  const desolationKind = rules.remind<DesolationKind>(Memory.DesolationKind)
   const activePlayer = rules.getActivePlayer()
   if (player === undefined || activePlayer !== player) return null
   return (

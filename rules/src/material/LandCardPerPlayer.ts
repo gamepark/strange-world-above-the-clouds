@@ -1,4 +1,4 @@
-import { LandCard } from './LandCard'
+  import { LandCard } from './LandCard'
 
 export const getLandscapeCards = (players: number) => {
   if (players === 2) return twoPlayersCards

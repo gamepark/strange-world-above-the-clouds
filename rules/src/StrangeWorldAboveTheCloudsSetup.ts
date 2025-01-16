@@ -26,8 +26,12 @@ export class StrangeWorldAboveTheCloudsSetup extends MaterialGameSetup<PlayerCol
     this.setupTurnOrder()
   }
 
+  get cardsForPlayers() {
+    return getLandscapeCards(this.players.length)
+  }
+
   setupDeck() {
-    const cardRecord = Object.entries(getLandscapeCards(this.players.length))
+    const cardRecord = Object.entries(this.cardsForPlayers)
     for (const [card, count] of cardRecord) {
       this.material(MaterialType.LandCard)
         .createItems(

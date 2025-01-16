@@ -1,7 +1,6 @@
 import {
   CompetitiveScore,
   hideItemId,
-  hideItemIdToOthers,
   MaterialGame,
   MaterialItem,
   MaterialMove,
@@ -12,6 +11,7 @@ import {
 import { LocationType } from './material/LocationType'
 import { MaterialType } from './material/MaterialType'
 import { PlayerColor } from './PlayerColor'
+import { ChangeFirstPlayerRule } from './rules/ChangeFirstPlayerRule'
 import { ChooseTurnOrderRule } from './rules/ChooseTurnOrderRule'
 import { DealRule } from './rules/DealRule'
 import { DesolationOfTheTzimimeRule } from './rules/DesolationOfTheTzimimeRule'
@@ -39,7 +39,8 @@ export class StrangeWorldAboveTheCloudsRules extends SecretMaterialRules<PlayerC
     [RuleId.Volcano]: VolcanoRule,
     [RuleId.DesolationOfTheTzimime]: DesolationOfTheTzimimeRule,
     [RuleId.PlaceDarkCity]: PlaceDarkCityRule,
-    [RuleId.ChooseTurnOrder]: ChooseTurnOrderRule
+    [RuleId.ChooseTurnOrder]: ChooseTurnOrderRule,
+    [RuleId.ChangeFirstPlayer]: ChangeFirstPlayerRule
   }
 
   locationsStrategies = {

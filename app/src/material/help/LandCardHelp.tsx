@@ -76,7 +76,7 @@ export const alignIcon = css`
   margin-top: -0.3em;
 `
 
-const IconsMini = {
+export const IconsMini = {
   'mountain': <Picture css={alignIcon} src={MountainMini}/>,
   'water': <Picture css={alignIcon} src={WaterMini}/>,
   'plant': <Picture css={alignIcon} src={PlantMini}/>,

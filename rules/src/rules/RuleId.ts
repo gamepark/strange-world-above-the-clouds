@@ -8,5 +8,6 @@ export enum RuleId {
   Water,
   DesolationOfTheTzimime,
   PlaceDarkCity,
-  ChooseTurnOrder
+  ChooseTurnOrder,
+  ChangeFirstPlayer
 }

@@ -1,5 +1,6 @@
 import { DropAreaDescription, FlatMaterialDescription, getRelativePlayerIndex, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, isMoveItem, isMoveItemType, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
+import { isStarting } from '@gamepark/strange-world-above-the-clouds/material/LandCard'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
 import { landCardDescription } from '../material/LandCardDescription'
@@ -71,6 +72,7 @@ class TableauLocator extends Locator {
     const helper =  new TableauHelper(context.rules.game, item.location.player!).boundaries
     const isFlipped = (context.material[context.type]! as FlatMaterialDescription).isFlippedOnTable(item, context) ?? false
     const transform = [`translateZ(${isFlipped? -10: 10}em)`, 'scale(2)']
+    if (isStarting(item.id)) return transform
     if (!isBottomPlayers && helper.yMin === item.location.y) transform.push('translateY(25%)')
     if (isBottomPlayers && helper.yMax === item.location.y) transform.push('translateY(-25%)')
 

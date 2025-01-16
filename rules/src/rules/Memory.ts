@@ -4,5 +4,6 @@ export enum Memory {
   TravelerToWelcome,
   PlayedFumarole,
   DesolationKind,
-  NextRule
+  NextRule,
+  Round
 }

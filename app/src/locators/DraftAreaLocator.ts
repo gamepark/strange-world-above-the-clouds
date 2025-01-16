@@ -7,6 +7,11 @@ import { playerPositions, Position, tableauLocator } from './TableauLocator'
 export class DraftAreaLocator extends ListLocator {
   gap = { x: 1, z: 1.5  }
 
+  protected getAreaCoordinates(location: Location, context: MaterialContext<number, number, number>) {
+    console.log(location)
+    return super.getAreaCoordinates(location, context)
+  }
+
   getCoordinates(location: Location, context: MaterialContext) {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
     if (context.rules.players.length > 2) {
@@ -24,31 +29,37 @@ export class DraftAreaLocator extends ListLocator {
     const tableauCoordinates = tableauLocator.getBaseCoordinates(location, context)
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]
-    const cameFromRight = this.locationDescription.isRightPlayer(location.player!, location.id, context)
+    const cameFromRight = this.cameFromRight(location.player!, location.id, context)
     tableauCoordinates.z = 1.5
     switch (position) {
       case Position.TopLeft:
         tableauCoordinates.x! += 26
+        tableauCoordinates.y! += 22
         return tableauCoordinates
       case Position.BottomLeft:
         tableauCoordinates.x! += 26
-        if (context.rules.players.length === 3) {
-        }
+        tableauCoordinates.y! += 22
         return tableauCoordinates
       case Position.TopCenter:
-        if (context.rules.players.length === 3) {
-          tableauCoordinates.x! += cameFromRight? -26: 26
-        }
+        tableauCoordinates.x! += cameFromRight? -26: 26
+        tableauCoordinates.y! += 13
         return tableauCoordinates
       case Position.TopRight:
         tableauCoordinates.x! -= 26
+        tableauCoordinates.y! += 22
         return tableauCoordinates
       case Position.BottomRight:
         tableauCoordinates.x! -= 26
-        if (context.rules.players.length === 3) {
-        }
+        tableauCoordinates.y! += 22
         return tableauCoordinates
     }
+  }
+
+  cameFromRight(areaPlayer: PlayerColor, sourcePlayer: PlayerColor, context: MaterialContext) {
+    const game = context.rules.game
+    const previousIndex = game.players.indexOf(areaPlayer) - 1
+    if (previousIndex < 0) return game.players[game.players.length - 1] === sourcePlayer
+    return game.players[previousIndex] === sourcePlayer
   }
 
   locationDescription = new DraftAreaDescription()
@@ -65,13 +76,6 @@ class DraftAreaDescription extends DropAreaDescription {
       width: 10,
       height: 11
     }
-  }
-
-  isRightPlayer(sourcePlayer: PlayerColor, player: PlayerColor, context: MaterialContext) {
-    const game = context.rules.game
-    const previousIndex = game.players.indexOf(sourcePlayer) - 1
-    if (previousIndex < 0) return game.players[game.players.length - 1] === player
-    return game.players[previousIndex] === player
   }
 }
 

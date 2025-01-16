@@ -20,7 +20,6 @@ export class TurnOrderLocator extends ListLocator {
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]
     tableauCoordinates.z = 1.5
-    tableauCoordinates.y! -= 13
     switch (position) {
       case Position.TopLeft:
         tableauCoordinates.x! += 26
