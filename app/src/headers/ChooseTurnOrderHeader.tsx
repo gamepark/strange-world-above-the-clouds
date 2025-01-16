@@ -1,16 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId } from '@gamepark/react-game'
-import { isCreateItemType } from '@gamepark/rules-api'
+import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, useRules } from '@gamepark/react-game'
+import { isCustomMoveType, isMoveItemType } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
+import { ChooseTurnOrderRule } from '@gamepark/strange-world-above-the-clouds/rules/ChooseTurnOrderRule'
+import { CustomMoveType } from '@gamepark/strange-world-above-the-clouds/rules/CustomMoveType'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 export const ChooseTurnOrderHeader = () => {
   const { t } = useTranslation()
   const [open, setOpen] = useState(true)
-  const turnLeft = useLegalMove((move) => isCreateItemType(MaterialType.FirstPlayerCard)(move) && !move.item.location.rotation)
-  const turnRight = useLegalMove((move) => isCreateItemType(MaterialType.FirstPlayerCard)(move) && !!move.item.location.rotation)
+  const rules = useRules<ChooseTurnOrderRule>()!
+  const turnOrder = rules.material(MaterialType.FirstPlayerCard).getItem()!
+  const turnLeft = useLegalMove((move) => (!turnOrder.location.rotation && isCustomMoveType(CustomMoveType.Pass)(move)) || (isMoveItemType(MaterialType.FirstPlayerCard)(move) && !move.location.rotation))
+  const turnRight = useLegalMove((move) => (turnOrder.location.rotation && isCustomMoveType(CustomMoveType.Pass)(move)) || (isMoveItemType(MaterialType.FirstPlayerCard)(move) && !!move.location.rotation))
   const player = usePlayerId()
   if (player === undefined) return null
   return (

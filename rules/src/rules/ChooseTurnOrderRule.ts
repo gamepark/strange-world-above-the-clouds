@@ -1,28 +1,26 @@
-import { isCreateItemType, ItemMove, PlayerTurnRule } from '@gamepark/rules-api'
-import { LocationType } from '../material/LocationType'
+import { isCreateItemType, ItemMove, MaterialMove, PlayerTurnRule } from '@gamepark/rules-api'
 import { MaterialType } from '../material/MaterialType'
+import { CustomMoveType } from './CustomMoveType'
 import { RuleId } from './RuleId'
 
 export class ChooseTurnOrderRule extends PlayerTurnRule {
   getPlayerMoves() {
-    return [
-      this.material(MaterialType.FirstPlayerCard)
-        .createItem({
-          location: {
-            type: LocationType.TurnOrder,
-            player: this.player,
-            rotation: false
-          }
-        }),
-      this.material(MaterialType.FirstPlayerCard)
-        .createItem({
-          location: {
-            type: LocationType.TurnOrder,
-            player: this.player,
-            rotation: true
-          }
-        })
-    ]
+    const turnOrder = this.turnOrder
+    const moves: MaterialMove[] = []
+    if (turnOrder.getItem()!.location.rotation) {
+      moves.push(turnOrder.rotateItem(false))
+    } else {
+      moves.push(turnOrder.rotateItem(true))
+    }
+
+    moves.push(this.customMove(CustomMoveType.Pass))
+
+    return moves
+  }
+
+  get turnOrder() {
+    return this
+      .material(MaterialType.FirstPlayerCard)
   }
 
   afterItemMove(move: ItemMove) {

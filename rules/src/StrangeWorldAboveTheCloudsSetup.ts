@@ -23,6 +23,7 @@ export class StrangeWorldAboveTheCloudsSetup extends MaterialGameSetup<PlayerCol
     this.setupFumaroles()
     this.setupTravelers()
     this.setupPlayers()
+    this.setupTurnOrder()
   }
 
   setupDeck() {
@@ -91,6 +92,15 @@ export class StrangeWorldAboveTheCloudsSetup extends MaterialGameSetup<PlayerCol
           }
         }))
       )
+  }
+
+  setupTurnOrder() {
+    this.material(MaterialType.FirstPlayerCard).createItem({
+      location: {
+        type: LocationType.TurnOrder,
+        player: this.players[0]
+      }
+    })
   }
 
   start() {

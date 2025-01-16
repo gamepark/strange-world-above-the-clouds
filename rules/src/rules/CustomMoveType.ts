@@ -1,3 +1,4 @@
 export enum CustomMoveType {
-  ValidateDesolation = 1
+  ValidateDesolation = 1,
+  Pass
 }

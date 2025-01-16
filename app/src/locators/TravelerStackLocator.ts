@@ -1,5 +1,5 @@
-import { DeckLocator, ItemContext } from '@gamepark/react-game'
-import { Coordinates, Location } from '@gamepark/rules-api'
+import { DeckLocator, ItemContext, MaterialContext } from '@gamepark/react-game'
+import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
 import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/LocationType'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { RuleId } from '@gamepark/strange-world-above-the-clouds/rules/RuleId'
@@ -30,7 +30,8 @@ export class TravelerStackLocator extends DeckLocator {
     return this.gap
   }
 
-  getHoverTransform(): string[] {
+  getHoverTransform(_item: MaterialItem, context: MaterialContext): string[] {
+    if (context.rules.game.players.length === 3) return ['translateZ(10em)', 'scale(2)']
     return ['translateZ(10em)', 'scale(2)', 'translateY(25%)']
   }
 

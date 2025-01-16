@@ -33,11 +33,9 @@ export class DraftAreaLocator extends ListLocator {
       case Position.BottomLeft:
         tableauCoordinates.x! += 26
         if (context.rules.players.length === 3) {
-          tableauCoordinates.y! += cameFromRight? 13.5: -13.5
         }
         return tableauCoordinates
       case Position.TopCenter:
-          tableauCoordinates.y! += 13.5
         if (context.rules.players.length === 3) {
           tableauCoordinates.x! += cameFromRight? -26: 26
         }
@@ -48,7 +46,6 @@ export class DraftAreaLocator extends ListLocator {
       case Position.BottomRight:
         tableauCoordinates.x! -= 26
         if (context.rules.players.length === 3) {
-          tableauCoordinates.y! += cameFromRight? -13.5: 13.5
         }
         return tableauCoordinates
     }
