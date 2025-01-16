@@ -1,7 +1,7 @@
 {
   "name": "@gamepark/strange-world-above-the-clouds",
   "version": "0.0.3",
-  "description": "The rules of Game Template adapted for Game Park",
+  "description": "The rules of Strange World Above The Clouds adapted for Game Park",
   "sideEffects": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,18 +15,13 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "tsc",
-    "publish": "lerna publish"
+    "prepublishOnly": "tsc"
   },
   "peerDependencies": {
-    "@gamepark/rules-api": ">=6.28",
-    "lodash": ">=4.17"
+    "@gamepark/rules-api": ">=6.28"
   },
   "devDependencies": {
-    "@gamepark/rules-api": "~6.29.3",
-    "@types/lodash": "^4.17.7",
-    "i18next": "^22.0.3",
-    "lodash": "^4.17.21"
-  },
-  "gitHead": "2b9a31444755a2dc3ec2938ab2fdb3e15e66c450"
+    "@gamepark/rules-api": "~6.29.2",
+    "i18next": "^22.0.3"
+  }
 }
