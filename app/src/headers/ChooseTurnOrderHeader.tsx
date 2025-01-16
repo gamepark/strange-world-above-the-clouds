@@ -16,7 +16,8 @@ export const ChooseTurnOrderHeader = () => {
   const turnLeft = useLegalMove((move) => (!turnOrder.location.rotation && isCustomMoveType(CustomMoveType.Pass)(move)) || (isMoveItemType(MaterialType.FirstPlayerCard)(move) && !move.location.rotation))
   const turnRight = useLegalMove((move) => (turnOrder.location.rotation && isCustomMoveType(CustomMoveType.Pass)(move)) || (isMoveItemType(MaterialType.FirstPlayerCard)(move) && !!move.location.rotation))
   const player = usePlayerId()
-  if (player === undefined) return null
+  const activePlayer = rules.getActivePlayer()
+  if (player === undefined || activePlayer != player) return null
   return (
     <>
     <ThemeButton onClick={() => setOpen(true)}>
