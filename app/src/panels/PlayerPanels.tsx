@@ -8,6 +8,12 @@ import { createPortal } from 'react-dom'
 import Star from '../images/icons/star.png'
 import { playerPositions, Position } from '../locators/TableauLocator'
 
+
+import SwampPanel from '../images/panel/swamp.jpg'
+import WaterPanel from '../images/panel/water.jpg'
+import EarthPanel from '../images/panel/earth.jpg'
+import MountainPanel from '../images/panel/mountain.jpg'
+
 export const PlayerPanels = () => {
   const players = usePlayers<PlayerColor>({ sortFromMe: true })
   const game = useGame<MaterialGame>()!
@@ -24,6 +30,7 @@ export const PlayerPanels = () => {
           const position = playerPositions[context.rules.players.length - 2][playerIndex]
 
           return <StyledPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={[panelPosition, getPositionCss(position)]}
+                                    backgroundImage={getPlayerBackground(player.id)}
                                     mainCounter={{
                                       image: Star,
                                       value: new ScoringHelper(game, player.id).score
@@ -38,6 +45,20 @@ const panelPosition = css`
   position: absolute;
   width: 28em;
 `
+
+const getPlayerBackground = (player: PlayerColor) => {
+  switch (player) {
+    case PlayerColor.Blue:
+      return WaterPanel;
+    case PlayerColor.Gray:
+      return MountainPanel;
+    case PlayerColor.Green:
+      return EarthPanel;
+    case PlayerColor.Yellow:
+      return SwampPanel;
+
+  }
+}
 
 const getPositionCss = (position: Position) => {
   switch (position) {

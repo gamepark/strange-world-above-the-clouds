@@ -41,6 +41,11 @@ import StartingGreen from '../images/lands/StartingGreen.jpg'
 import StartingYellow from '../images/lands/StartingYellow.jpg'
 import { LandCardHelp } from './help/LandCardHelp'
 
+import SwampPanel from '../images/panel/swamp.jpg'
+import WaterPanel from '../images/panel/water.jpg'
+import EarthPanel from '../images/panel/earth.jpg'
+import MountainPanel from '../images/panel/mountain.jpg'
+
 export class LandCardDescription extends CardDescription {
   backImage = LandBack
 
@@ -91,6 +96,11 @@ export class LandCardDescription extends CardDescription {
     images.push(WaterMini)
     images.push(Star)
     images.push(Volcano)
+    images.push(SwampPanel)
+    images.push(WaterPanel)
+    images.push(MountainPanel)
+    images.push(EarthPanel)
+
     return images
   }
 
