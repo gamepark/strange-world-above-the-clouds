@@ -977,7 +977,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play" components={BaseComponents}/>,
+        text: () => <Trans defaults="tuto.play.one" components={BaseComponents}/>,
         position: { x: 20 }
       },
       focus: (game) => ({
