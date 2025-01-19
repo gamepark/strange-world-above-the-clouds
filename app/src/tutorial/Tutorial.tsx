@@ -573,7 +573,11 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
           this.material(game, MaterialType.LandCard)
             .location(LocationType.Tableau)
             .player(me)
-            .id(LandCard.LandYellow1)
+            .id(LandCard.LandYellow1),
+          this.material(game, MaterialType.LandCard)
+            .location(LocationType.Tableau)
+            .player(me)
+            .id(LandCard.LandGreen1)
         ],
         margin: {
           right: 30,
