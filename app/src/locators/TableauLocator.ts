@@ -1,5 +1,5 @@
 import { DropAreaDescription, FlatMaterialDescription, getRelativePlayerIndex, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
-import { Coordinates, isMoveItem, isMoveItemType, Location, MaterialItem, MaterialMove } from '@gamepark/rules-api'
+import { Coordinates, isMoveItemType, Location, MaterialItem } from '@gamepark/rules-api'
 import { isStarting } from '@gamepark/strange-world-above-the-clouds/material/LandCard'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
@@ -79,20 +79,7 @@ class TableauLocator extends Locator {
     return transform
   }
 
-  locationDescription = new TableauSpotDescription()
-}
-
-export class TableauSpotDescription extends DropAreaDescription {
-  constructor() {
-    super(landCardDescription)
-  }
-
-  getBestDropMove(moves: MaterialMove[], _location: Location, context: ItemContext): MaterialMove {
-    const moveWithSameRotation = moves.find(move =>
-      isMoveItem(move) && move.location.rotation === context.rules.material(move.itemType).getItem(move.itemIndex)?.location.rotation
-    )
-    return moveWithSameRotation ?? moves[0]
-  }
+  locationDescription = new DropAreaDescription(landCardDescription)
 }
 
 export const tableauLocator = new TableauLocator()
