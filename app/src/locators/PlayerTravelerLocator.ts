@@ -1,4 +1,4 @@
-import { ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
+import { DropAreaDescription, ItemContext, Locator, MaterialContext } from '@gamepark/react-game'
 import { Location, MaterialItem } from '@gamepark/rules-api'
 import { TableauHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/TableauHelper'
 import { landCardDescription } from '../material/LandCardDescription'
@@ -12,6 +12,11 @@ export class PlayerTravelerLocator extends Locator {
     const deltaX = (xMin + xMax) / 2
     const deltaY = (yMin + yMax) / 2
     const deltaForZ = location.x! < xMin? -1: 1
+    console.log({
+      x: x! + ((location.x!) - deltaX) * (landCardDescription.width + 0.1) + ((location.z ?? 0) * deltaForZ),
+      y: y! + ((location.y!) - deltaY) * (landCardDescription.height + 0.1),
+      z: (location.z ?? 0) * 0.05
+    })
     return {
       x: x! + ((location.x!) - deltaX) * (landCardDescription.width + 0.1) + ((location.z ?? 0) * deltaForZ),
       y: y! + ((location.y!) - deltaY) * (landCardDescription.height + 0.1),
@@ -34,6 +39,9 @@ export class PlayerTravelerLocator extends Locator {
 
     return transform
   }
+
+  locationDescription = new DropAreaDescription(landCardDescription)
+
 }
 
 export const playerTravelerLocator = new PlayerTravelerLocator()

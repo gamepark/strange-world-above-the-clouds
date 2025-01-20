@@ -610,19 +610,28 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         text: () => <Trans defaults="tuto.traveler.choose" components={BaseComponents}/>,
         position: { y: 25 }
       },
-      focus: (game) =>
-        ({
+      focus: (game) => {
+        console.log(
+          this
+            .location(LocationType.PlayerTraveler)
+            .player(me)
+            .x(-1)
+            .y(-0.5)
+            .z(0)
+            .location
+        )
+        return ({
           materials: [
             this.material(game, MaterialType.TravelerCard)
               .location(LocationType.TravelerStack)
-              .id((id: Traveler) => id === Traveler.Kark)
+              .id(Traveler.Kark)
           ],
           locations: [
             this
               .location(LocationType.PlayerTraveler)
               .player(me)
-              .y(-0.5)
               .x(-1)
+              .y(-0.5)
               .z(0)
               .location
           ],
@@ -631,12 +640,15 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
             right: 5,
             bottom: 15
           }
-        }),
+        })
+      },
       move: {
-        filter: (move, game) =>
-          isMoveItemType(MaterialType.TravelerCard)(move) &&
-          move.location.x === -1 && move.location.y === -0.5 &&
-          game.items[move.itemType]![move.itemIndex].id === Traveler.Kark
+        filter: (move, game) => {
+          isMoveItemType(MaterialType.TravelerCard)(move) && console.log(move.location)
+          return isMoveItemType(MaterialType.TravelerCard)(move) &&
+            move.location.x === -1 && move.location.y === -0.5 &&
+            game.items[move.itemType]![move.itemIndex].id === Traveler.Kark
+        }
       }
     },
     {
