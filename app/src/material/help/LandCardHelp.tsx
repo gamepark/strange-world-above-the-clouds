@@ -23,6 +23,7 @@ import Water from '../../images/icons/water.png'
 export const LandCardHelp: FC<MaterialHelpProps> = (props) => {
   const { item } = props
   const { t } = useTranslation()
+  if (item.id === undefined || item.location?.rotation) return <InvisibleCard {...props} />
   const isFumarole = item.id === LandCard.Fumarole
   const characteristics = LandCardsCharacteristics[item.id as LandCard]
   const types = uniq(characteristics?.types ?? [])
@@ -56,6 +57,13 @@ const LandTypeHelp: FC<LandTypeProps> = ({ type }) => {
         {LandTypeDescription[type]}
       </div>
     </div>
+  )
+}
+
+const InvisibleCard: FC<MaterialHelpProps> = () => {
+  return (
+    <>
+    </>
   )
 }
 
