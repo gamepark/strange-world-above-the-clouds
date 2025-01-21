@@ -1,7 +1,12 @@
-import { CardDescription, ItemContext, MaterialContext } from '@gamepark/react-game'
-import { MaterialItem } from '@gamepark/rules-api'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons/faArrowUp'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CardDescription, ItemContext, ItemMenuButton, MaterialContext } from '@gamepark/react-game'
+import { isMoveItemType, MaterialItem, MaterialMove, MoveItem } from '@gamepark/rules-api'
 import { LandCard } from '@gamepark/strange-world-above-the-clouds/material/LandCard'
 import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/LocationType'
+import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
+import { Trans } from 'react-i18next'
 import MoonMini from '../images/icons/moon-mini.png'
 import Moon from '../images/icons/moon.png'
 import MountainMini from '../images/icons/mountain-mini.png'
@@ -39,12 +44,12 @@ import StartingBlue from '../images/lands/StartingBlue.jpg'
 import StartingGray from '../images/lands/StartingGray.jpg'
 import StartingGreen from '../images/lands/StartingGreen.jpg'
 import StartingYellow from '../images/lands/StartingYellow.jpg'
-import { LandCardHelp } from './help/LandCardHelp'
+import EarthPanel from '../images/panel/earth.jpg'
+import MountainPanel from '../images/panel/mountain.jpg'
 
 import SwampPanel from '../images/panel/swamp.jpg'
 import WaterPanel from '../images/panel/water.jpg'
-import EarthPanel from '../images/panel/earth.jpg'
-import MountainPanel from '../images/panel/mountain.jpg'
+import { LandCardHelp } from './help/LandCardHelp'
 
 export class LandCardDescription extends CardDescription {
   backImage = LandBack
@@ -108,6 +113,42 @@ export class LandCardDescription extends CardDescription {
     const locator = context.locators[item.location.type]
     if (!locator) return []
     return locator.getHoverTransform(item, context)
+  }
+
+  getHelpButton() {
+    return <></>
+  }
+
+  getItemMenu(_item: MaterialItem, context: ItemContext, legalMoves: MaterialMove[]) {
+    const draftMove: MoveItem | undefined = legalMoves.find((move) => this.isDraftMove(move, context)) as MoveItem | undefined
+    if (draftMove) {
+      const players = context.rules.game.players
+      const imAtLeft = players[(players.indexOf(draftMove.location.player!) + 1) % players.length] === context.player
+      return (
+        <>
+          <ItemMenuButton label={<Trans defaults="Give"/>}
+                          move={draftMove}
+                          angle={0}
+                          radius={5}
+          >
+            <FontAwesomeIcon icon={imAtLeft? faArrowRight: faArrowUp}/>
+          </ItemMenuButton>
+          </>
+      )
+    }
+
+    return
+  }
+
+  isMenuAlwaysVisible(): boolean {
+    return true
+  }
+
+  isDraftMove(move: MaterialMove, context: ItemContext): move is MoveItem {
+    return isMoveItemType(MaterialType.LandCard)(move)
+      && move.location.type === LocationType.DraftArea
+      && move.itemIndex === context.index
+
   }
 
   help = LandCardHelp

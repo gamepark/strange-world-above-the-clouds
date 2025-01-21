@@ -19,6 +19,7 @@ export const PlayerPanels = () => {
   const game = useGame<MaterialGame>()!
   const root = document.getElementById('root')
   const context = useMaterialContext()
+  const isEnded = game.rule === undefined
   if (!root) {
     return null
   }
@@ -31,10 +32,10 @@ export const PlayerPanels = () => {
 
           return <StyledPlayerPanel key={player.id} player={player} color={playerColorCode[player.id]} css={[panelPosition, getPositionCss(position)]}
                                     backgroundImage={getPlayerBackground(player.id)}
-                                    mainCounter={{
+                                    mainCounter={isEnded?  {
                                       image: Star,
                                       value: new ScoringHelper(game, player.id).score
-                                    }}/>
+                                    }: undefined}/>
         }
       )}
     </>,

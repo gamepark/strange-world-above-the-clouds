@@ -4,8 +4,6 @@ export enum RuleId {
   PlayLandCard,
   WelcomingTraveler,
   Volcano,
-  Swamp,
-  Water,
   DesolationOfTheTzimime,
   PlaceDarkCity,
   ChooseTurnOrder,

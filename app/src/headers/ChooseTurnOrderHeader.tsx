@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, useRules } from '@gamepark/react-game'
+import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isCustomMoveType, isMoveItemType } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
 import { ChooseTurnOrderRule } from '@gamepark/strange-world-above-the-clouds/rules/ChooseTurnOrderRule'
@@ -17,7 +17,12 @@ export const ChooseTurnOrderHeader = () => {
   const turnRight = useLegalMove((move) => (turnOrder.location.rotation && isCustomMoveType(CustomMoveType.Pass)(move)) || (isMoveItemType(MaterialType.FirstPlayerCard)(move) && !!move.location.rotation))
   const player = usePlayerId()
   const activePlayer = rules.getActivePlayer()
-  if (player === undefined || activePlayer !== player) return null
+  const name = usePlayerName(activePlayer)
+  if (player === undefined || activePlayer !== player) {
+    return (
+      <Trans defaults="header.choose.turn.player" values={{ player: name }}/>
+    )
+  }
   return (
     <>
     <ThemeButton onClick={() => setOpen(true)}>

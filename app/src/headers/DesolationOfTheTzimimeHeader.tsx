@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { Picture, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, useRules, useUndo } from '@gamepark/react-game'
+import { Picture, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, usePlayerName, useRules, useUndo } from '@gamepark/react-game'
 import { isCustomMoveType, MaterialRules } from '@gamepark/rules-api'
+import { PlayerColor } from '@gamepark/strange-world-above-the-clouds/PlayerColor'
 import { CustomMoveType } from '@gamepark/strange-world-above-the-clouds/rules/CustomMoveType'
 import { DesolationKind } from '@gamepark/strange-world-above-the-clouds/rules/DesolationOfTheTzimimeRule'
 import { Memory } from '@gamepark/strange-world-above-the-clouds/rules/Memory'
@@ -11,6 +12,7 @@ import Swamp from '../images/icons/swamp.png'
 import Water from '../images/icons/water.png'
 import Moon from '../images/icons/moon.png'
 
+
 export const DesolationOfTheTzimimeHeader = () => {
   const [open, setOpen] = useState(true)
   const [undo] = useUndo()
@@ -19,12 +21,16 @@ export const DesolationOfTheTzimimeHeader = () => {
   const player = usePlayerId()
   const desolationKind = rules.remind<DesolationKind>(Memory.DesolationKind)
   const activePlayer = rules.getActivePlayer()
-  if (player === undefined || activePlayer !== player) return null
+  const name = usePlayerName(activePlayer)
+  if (player === undefined || activePlayer !== player) {
+    return (
+      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} values={{ player: name }} components={components} />
+    )
+  }
+
   return (
     <>
-      <ThemeButton onClick={() => setOpen(true)}>
-        <Trans defaults="header.desolation"/>
-      </ThemeButton>
+      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} components={components} />
       <RulesDialog open={open} close={() => setOpen(false)}>
         <div css={rulesCss}>
           <h2>
@@ -32,9 +38,9 @@ export const DesolationOfTheTzimimeHeader = () => {
           </h2>
           <p>
             {desolationKind === DesolationKind.Portal && <Trans defaults="warn.portal"/>}
-            {desolationKind === DesolationKind.Moon && <Trans defaults="warn.moon" components={{ moon: <Picture css={iconCss} src={Moon}/> }}/>}
-            {desolationKind === DesolationKind.Swamp && <Trans defaults="warn.swamp" components={{ swamp: <Picture css={iconCss} src={Swamp}/> }}/>}
-            {desolationKind === DesolationKind.Water && <Trans defaults="warn.water" components={{ water: <Picture css={iconCss} src={Water}/> }}/>}
+            {desolationKind === DesolationKind.Moon && <Trans defaults="warn.moon" components={components}/>}
+            {desolationKind === DesolationKind.Swamp && <Trans defaults="warn.swamp" components={components}/>}
+            {desolationKind === DesolationKind.Water && <Trans defaults="warn.water" components={components}/>}
           </p>
           <p>
             <Trans defaults="warn.tzimime"/>
@@ -51,6 +57,21 @@ export const DesolationOfTheTzimimeHeader = () => {
       </RulesDialog>
     </>
   )
+}
+
+
+export const getDesolationKey = (kind: DesolationKind, player: PlayerColor, activePlayer?: PlayerColor) => {
+  const itsMe = player === activePlayer
+  switch (kind) {
+      case DesolationKind.Water:
+        return itsMe? 'header.desolation.water': 'header.desolation.water.player';
+      case DesolationKind.Swamp:
+        return itsMe? 'header.desolation.swamp': 'header.desolation.swamp.player';
+      case DesolationKind.Portal:
+        return itsMe? 'header.desolation.portal': 'header.desolation.portal.player';
+      case DesolationKind.Moon:
+        return itsMe? 'header.desolation.moon': 'header.desolation.moon.player';
+    }
 }
 
 const rulesCss = css`
@@ -70,12 +91,19 @@ const rulesCss = css`
 
 
 export const iconCss = css`
-  height: 1.5em;
+  height: 1em;
   position: relative;
   border-radius: 0.2em;
-  top: 0.4em;
-  margin-top: 0;
+  top: 0.1em;
 `
+
+
+export const components = {
+  moon: <Picture css={iconCss} src={Moon}/>,
+  swamp: <Picture css={iconCss} src={Swamp}/>,
+  water: <Picture css={iconCss} src={Water}/>,
+  u: <u />
+}
 
 const buttonContainerCss = css`
   display: flex;
