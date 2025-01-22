@@ -12,6 +12,7 @@ import DarkCityFront4 from '../images/darkcity/DarkCityFront4.jpg'
 import DarkCityFront5 from '../images/darkcity/DarkCityFront5.jpg'
 import DarkCityFront7 from '../images/darkcity/DarkCityFront7.jpg'
 import DarkCityFront9 from '../images/darkcity/DarkCityFront9.jpg'
+import { DarkCitiesHelp } from './help/DarkCitiesHelp'
 
 export class DarkCitiesDescription extends CardDescription {
   backImages = {
@@ -50,6 +51,8 @@ export class DarkCitiesDescription extends CardDescription {
 
     return
   }
+
+  help = DarkCitiesHelp
 }
 
 export const darkCitiesDescription = new DarkCitiesDescription()

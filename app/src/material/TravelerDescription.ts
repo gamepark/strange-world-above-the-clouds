@@ -8,6 +8,7 @@ import Pshit from '../images/travelers/Pshit.jpg'
 import Boung from '../images/travelers/Boung.jpg'
 import Roro from '../images/travelers/Roro.jpg'
 import Rumph from '../images/travelers/Rumph.jpg'
+import { TravelerHelp } from './help/TravelerHelp'
 
 export class TravelerDescription extends CardDescription {
   images = {
@@ -20,6 +21,8 @@ export class TravelerDescription extends CardDescription {
     [Traveler.Roro]: Roro,
     [Traveler.Rumph]: Rumph,
   }
+
+  help = TravelerHelp
 }
 
 export const travelerDescription = new TravelerDescription()
