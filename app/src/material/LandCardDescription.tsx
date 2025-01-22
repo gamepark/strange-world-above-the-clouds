@@ -128,11 +128,13 @@ export class LandCardDescription extends CardDescription {
     if (draftMove) {
       const players = context.rules.game.players
       const imAtLeft = players[(players.indexOf(draftMove.location.player!) + 1) % players.length] === context.player
+      const card = context.rules.material(MaterialType.LandCard).getItem(context.index)!
       return (
         <>
-          <ItemMenuButton label={<Trans defaults="Give"/>}
+          <ItemMenuButton label={<Trans defaults="button.give"/>}
                           move={draftMove}
-                          angle={0}
+                          labelPosition="right"
+                          angle={-30 + (card.location.x! * 30)}
                           radius={5}
           >
             <FontAwesomeIcon icon={imAtLeft? faArrowRight: faArrowUp}/>
