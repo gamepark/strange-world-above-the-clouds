@@ -9,6 +9,7 @@ import { gameAnimations } from './animations/GameAnimations'
 import App from './App'
 import { Locators } from './locators/Locators'
 import { Material } from './material/Material'
+import { StrangeWorldScoring } from './scoring/StrangeWorldScoring'
 import translations from './translations.json'
 import { Tutorial } from './tutorial/Tutorial'
 
@@ -24,6 +25,7 @@ ReactDOM.render(
       material={Material}
       locators={Locators}
       tutorial={new Tutorial()}
+      scoring={new StrangeWorldScoring()}
       animations={gameAnimations}>
       <App/>
     </GameProvider>

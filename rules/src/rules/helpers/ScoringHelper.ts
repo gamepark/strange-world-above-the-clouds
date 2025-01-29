@@ -204,7 +204,7 @@ export class ScoringHelper extends MaterialRulesPart {
       treatedItems.push(line[i])
       const adjacenCards = this
         .getAdjacentCards(itemsWithoutTreated, line[i])
-        .filter((i) => !LandCardsCharacteristics[i.id as LandCard]?.portal)
+        .filter((i) => LandCardsCharacteristics[i.id as LandCard]?.portal)
       portal += adjacenCards.length
     }
 
