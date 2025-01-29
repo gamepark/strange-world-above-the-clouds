@@ -7,14 +7,30 @@ export class PlayerHandLocator extends HandLocator {
     const coordinates = tableauLocator.getBaseCoordinates(location, context)
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]
-    if (this.isTop(position)) {
-      coordinates.y! -= 21
-    } else {
-      coordinates.y! += 21
-    }
 
-    if (position === Position.BottomLeft || position === Position.TopLeft) coordinates.x! += 10
-    if (position === Position.BottomRight || position === Position.TopRight) coordinates.x! -= 10
+    switch (position) {
+      case Position.TopLeft:
+        coordinates.x! -= 24;
+        coordinates.y! -= 15;
+        break;
+      case Position.TopCenter:
+        coordinates.x! -= 25;
+        coordinates.y! -= 5
+        break;
+      case Position.TopRight:
+        coordinates.x! += 25;
+        coordinates.y! -= 15;
+        break;
+      case Position.BottomLeft:
+        coordinates.x! -= 27;
+        coordinates.y! += 7;
+        break;
+      case Position.BottomRight:
+        coordinates.x! += 27;
+        coordinates.y! += 7;
+        break;
+
+    }
 
     coordinates.z = 1.5
     return coordinates

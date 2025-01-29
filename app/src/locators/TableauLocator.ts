@@ -29,7 +29,7 @@ class TableauLocator extends Locator {
   }
 
   getCoordinates(location: Location, context: MaterialContext) {
-    const { xMax, xMin, yMax, yMin } = new TableauHelper(context.rules.game, location.player!).boundaries
+    const { xMax, xMin, yMax, yMin } = new TableauHelper(context.rules.game, location.player!).globalBoundaries
     const { x, y } = this.getBaseCoordinates(location, context)
     const deltaX = (xMin + xMax) / 2
     const deltaY = (yMin + yMax) / 2
@@ -54,13 +54,13 @@ class TableauLocator extends Locator {
       case Position.TopLeft:
         return { x: -45, y: -40 }
       case Position.TopCenter:
-        return players === 3? { x: 0, y: -30 }: { x: 7.5, y: -40 }
+        return { x: 0, y: -20 }
       case Position.TopRight:
         return { x: 45, y: -40 }
       case Position.BottomLeft:
-        return players === 2 ? { x: -30, y: 7 } : players === 3 ? { x: -45, y: 3 } : { x: -45, y: 2 }
+        return players === 2 ? { x: -22, y: 7 } : players === 3 ? { x: -30, y: 15 } : { x: -22, y: 2 }
       case Position.BottomRight:
-        return players === 2 ? { x: 30, y: 7 } : players === 3 ? { x: 45, y: 3 } : { x: 45, y: 2 }
+        return players === 2 ? { x: 22, y: 7 } : players === 3 ? { x: 30, y: 15 } : { x: 22, y: 2 }
     }
   }
 
@@ -68,8 +68,8 @@ class TableauLocator extends Locator {
     const { rules } = context
     const player = item.location.player
     const index = getRelativePlayerIndex(context, player)
-    const isBottomPlayers = rules.players.length === 2 || (rules.players.length === 5? (index === 0 || index === 4): (rules.players.length === 4? (index === 0 || index === 3): index === 0))
-    const helper =  new TableauHelper(context.rules.game, item.location.player!).boundaries
+    const isBottomPlayers = rules.players.length < 4 || (index === 0 || index === 3)
+    const helper =  new TableauHelper(context.rules.game, item.location.player!).globalBoundaries
     const isFlipped = (context.material[context.type]! as FlatMaterialDescription).isFlippedOnTable(item, context) ?? false
     const transform = [`translateZ(${isFlipped? -10: 10}em)`, 'scale(2)']
     if (isStarting(item.id)) return transform

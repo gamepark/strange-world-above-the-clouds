@@ -125,7 +125,7 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
     const card = this.playedCard
     const item = card.getItem()!
     const characteristics = LandCardsCharacteristics[item.id as LandCard]
-    const boundaries = new TableauHelper(this.game, this.player).boundaries
+    const boundaries = new TableauHelper(this.game, this.player).land
     if (characteristics.moon && boundaries.yMin < item.location.y!) {
       return [card.rotateItem(true)]
     }

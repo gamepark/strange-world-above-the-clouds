@@ -1111,12 +1111,10 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       move: {
         player: celine,
-        filter: (move, game) => {
-          isMoveItemType(MaterialType.TravelerCard)(move) && console.log(move)
-          return isMoveItemType(MaterialType.TravelerCard)(move) &&
-            move.location.y === 0.5 &&
-            game.items[move.itemType]![move.itemIndex].id === Traveler.Burk
-        }
+        filter: (move, game) =>
+          isMoveItemType(MaterialType.TravelerCard)(move) &&
+          move.location.y === 0.5 &&
+          game.items[move.itemType]![move.itemIndex].id === Traveler.Burk
       }
     },
     {

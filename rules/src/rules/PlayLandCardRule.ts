@@ -38,7 +38,7 @@ export class PlayLandCardRule extends PlayerTurnRule {
   isBlockedByTraveler(location: Location) {
     const travelerX = this.travelerX
     if (travelerX === undefined) return false
-    const boundaries = new TableauHelper(this.game, this.player).boundaries
+    const boundaries = new TableauHelper(this.game, this.player).land
     if (travelerX < boundaries.xMin) return location.x! <= travelerX
     return location.x! >= travelerX
   }

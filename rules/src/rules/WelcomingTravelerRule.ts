@@ -15,7 +15,7 @@ export class WelcomingTravelerRule extends BasePlayedCardRule {
   }
 
   getPlayerMoves() {
-    const boundaries = new TableauHelper(this.game, this.player).boundaries
+    const boundaries = new TableauHelper(this.game, this.player).land
     const travelers = this.travelers
     const playerTravelers = this.playerTravelers
     const playedCard = this.playedCard.getItem()!

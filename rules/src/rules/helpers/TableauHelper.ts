@@ -19,7 +19,7 @@ export class TableauHelper extends MaterialRulesPart {
 
   get availableSpaces() {
     const availableSpaces: Location[] = []
-    const boundaries = this.boundaries
+    const boundaries = this.land
     const playedCards = this.panorama.getItems()
 
     if (playedCards.length === 0) {
@@ -55,7 +55,19 @@ export class TableauHelper extends MaterialRulesPart {
 
   }
 
-  get boundaries(): Boundaries {
+  get globalBoundaries(): Boundaries {
+    const { xMin, xMax, yMin, yMax } = this.land
+    const travelers = this.material(MaterialType.TravelerCard).player(this.player).getItems()
+    const travelerX = travelers?.[0]?.location?.x
+    return {
+      xMin: travelerX && travelerX < xMin? travelerX: xMin,
+      xMax: travelerX && travelerX > xMax? travelerX: xMax,
+      yMin,
+      yMax
+    }
+  }
+
+  get land(): Boundaries {
     const panorama = this.panorama
     return {
       xMin: panorama.minBy((item) => item.location.x!).getItem()?.location?.x ?? 0,
@@ -75,7 +87,6 @@ export class TableauHelper extends MaterialRulesPart {
   get isFull() {
     return this.panorama.length === 16
   }
-
 }
 
 export const isAnyCardToTheLeft = (slotToCheck: MaterialItem, reference: { x?: number; y?: number }) => {

@@ -84,7 +84,7 @@ export class ScoringHelper extends MaterialRulesPart {
 
   get mountainScoring() {
     const panorama = this.mountains
-    const boundaries = new TableauHelper(this.game, this.player).boundaries
+    const boundaries = new TableauHelper(this.game, this.player).land
     let total = 0
     for (let x = boundaries.xMin; x <= boundaries.xMax; x++) {
       for (let y = boundaries.yMin; y <= boundaries.yMax; y++) {
