@@ -174,7 +174,9 @@ export class ScoringHelper extends MaterialRulesPart {
     if (characteristics.portal) {
       const firstLine = cards.filter((i) => i.location.y === item.location.y! - 0.5)
       const secondLine = cards.filter((i) => i.location.y === item.location.y! + 0.5)
-      return base + this.countPortals(firstLine) + this.countPortals(secondLine)
+      const countPortal = this.countPortals(firstLine) + this.countPortals(secondLine)
+      if (countPortal < characteristics.min) return base
+      return base + characteristics.score
     }
 
     if (characteristics.fumarole) {
