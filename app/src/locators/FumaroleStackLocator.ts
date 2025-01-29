@@ -9,6 +9,8 @@ export class FumaroleStackLocator extends DeckLocator {
     if (context.rules.game.players.length === 2) return { x: darkCityCoordinates.x + 8, y: -24 }
     return { x: 0, y: darkCityCoordinates.y! + 9.5 }
   }
+
+  navigationSorts = []
 }
 
 export const fumaroleStackLocator = new FumaroleStackLocator()

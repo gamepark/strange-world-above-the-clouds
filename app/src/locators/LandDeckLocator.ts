@@ -7,6 +7,9 @@ export class LandDeckLocator extends DeckLocator {
     if (context.rules.game.players.length === 2) return { x: -12, y: -24 }
     return { x: 0, y: -20 }
   }
+
+  navigationSorts = []
+
   limit = 20
 }
 
