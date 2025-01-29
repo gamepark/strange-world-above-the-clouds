@@ -15,7 +15,6 @@ export class BasePlayedCardRule extends PlayerTurnRule {
     }
 
     if (this.allCardsPlaces) {
-      if (this.game.players.length < 3) return [this.startRule(RuleId.Deal)]
       return [this.startRule(RuleId.ChangeFirstPlayer)]
     } else {
       return [this.startPlayerTurn(RuleId.PlayLandCard, this.nextPlayer)]

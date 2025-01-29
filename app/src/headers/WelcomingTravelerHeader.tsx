@@ -8,7 +8,8 @@ export const WelcomingTravelerHeader = () => {
   const player = usePlayerId()
   const activePlayer = rules.getActivePlayer()
   const name = usePlayerName(activePlayer)
-  const itsMe = activePlayer === player
+  const itsMe = player && activePlayer === player
+  console.log(itsMe)
   if (itsMe) {
     return (
       <Trans defaults="header.traveler"/>

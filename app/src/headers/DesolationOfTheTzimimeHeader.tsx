@@ -24,13 +24,19 @@ export const DesolationOfTheTzimimeHeader = () => {
   const name = usePlayerName(activePlayer)
   if (player === undefined || activePlayer !== player) {
     return (
-      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} values={{ player: name }} components={components} />
+      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} values={{ player: name }} components={{
+        ...components,
+        button: <u />
+      }} />
     )
   }
 
   return (
     <>
-      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} components={components} />
+      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} components={{
+        ...components,
+        button: <ThemeButton onClick={() => setOpen(true)} />
+      }} />
       <RulesDialog open={open} close={() => setOpen(false)}>
         <div css={rulesCss}>
           <h2>
@@ -46,7 +52,7 @@ export const DesolationOfTheTzimimeHeader = () => {
             <Trans defaults="warn.tzimime"/>
           </p>
           <p css={buttonContainerCss}>
-            <PlayMoveButton move={pass} onPlay={() => setOpen(false)}>
+            <PlayMoveButton move={pass} onPlay={() => setOpen(false)} auto={10} >
               <Trans defaults="warn.confirm" />
             </PlayMoveButton>
             <ThemeButton onClick={() => undo()} onPlay={() => setOpen(false)}>

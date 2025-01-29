@@ -1,4 +1,4 @@
-import { MaterialRulesPart } from '@gamepark/rules-api'
+import { MaterialMove, MaterialRulesPart } from '@gamepark/rules-api'
 import { LocationType } from '../material/LocationType'
 import { MaterialType } from '../material/MaterialType'
 import { RuleId } from './RuleId'
@@ -6,13 +6,21 @@ import { RuleId } from './RuleId'
 export class ChangeFirstPlayerRule extends MaterialRulesPart {
   onRuleStart() {
     const newFirstPlayer = this.nextPlayer
-    return [
+    const moves: MaterialMove[] = [
       this.firstPlayerCard.moveItem({
         type: LocationType.TurnOrder,
         player: newFirstPlayer
-      }),
-      this.startPlayerTurn(RuleId.ChooseTurnOrder, newFirstPlayer)
+      })
     ]
+
+    if (this.game.players.length > 2) {
+      moves.push(this.startPlayerTurn(RuleId.ChooseTurnOrder, newFirstPlayer))
+
+    } else {
+      moves.push(this.startRule(RuleId.Deal))
+    }
+
+    return moves
   }
 
   get nextPlayer() {
