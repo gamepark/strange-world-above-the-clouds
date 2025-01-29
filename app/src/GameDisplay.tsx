@@ -22,8 +22,8 @@ export const GameDisplay: FC<GameDisplayProps> = ({ players }) => {
 }
 
 const sizes = [
-  { xMin: -50, xMax: 50, yMin: -30, yMax: 31 },
-  { xMin: -50, xMax: 50, yMin: -30, yMax: 31 },
-  { xMin: -68 , xMax: 68, yMin: -40, yMax: 37 },
-  { xMin: -75, xMax: 75, yMin: -60, yMax: 27.5 },
+  { xMin: -50, xMax: 50, yMin: -31, yMax: 31 },
+  { xMin: -61, xMax: 61, yMin: -32, yMax: 32 },
+  { xMin: -81 , xMax: 81, yMin: -41, yMax: 41 },
+  { xMin: -96, xMax: 96, yMin: -51, yMax: 51 },
 ]

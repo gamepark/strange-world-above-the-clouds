@@ -6,7 +6,7 @@ export class FumaroleStackLocator extends DeckLocator {
   getCoordinates(location: Location, context: MaterialContext) {
     const darkCityCoordinates = darkCityStackLocator.getCoordinates(location, context)
     if (context.rules.game.players.length === 3) return { x: -3, y: darkCityCoordinates.y! + 9.5 }
-    if (context.rules.game.players.length === 2) return { x: 8, y: -24 }
+    if (context.rules.game.players.length === 2) return { x: darkCityCoordinates.x + 8, y: -24 }
     return { x: 0, y: darkCityCoordinates.y! + 9.5 }
   }
 }

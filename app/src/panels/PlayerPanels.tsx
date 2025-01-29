@@ -81,6 +81,7 @@ export const PlayerPanels = () => {
 const panelPosition = css`
   position: absolute;
   width: 28em;
+  
 `
 
 const getPlayerBackground = (player: PlayerColor) => {

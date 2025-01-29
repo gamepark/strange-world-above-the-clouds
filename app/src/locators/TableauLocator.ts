@@ -52,15 +52,15 @@ class TableauLocator extends Locator {
     const players = context.rules.players.length
     switch (position) {
       case Position.TopLeft:
-        return { x: -45, y: -40 }
+        return { x: -45, y: -23 }
       case Position.TopCenter:
-        return { x: 0, y: -20 }
+        return { x: 4, y: -17.5}
       case Position.TopRight:
-        return { x: 45, y: -40 }
+        return { x: 45, y: -23 }
       case Position.BottomLeft:
-        return players === 2 ? { x: -22, y: 7 } : players === 3 ? { x: -30, y: 15 } : { x: -22, y: 2 }
+        return players === 2 ? { x: -22, y: 8 } : players === 3 ? { x: -39, y: 17.5 } : { x: -45, y: 23 }
       case Position.BottomRight:
-        return players === 2 ? { x: 22, y: 7 } : players === 3 ? { x: 30, y: 15 } : { x: 22, y: 2 }
+        return players === 2 ? { x: 22, y: 8 } : players === 3 ? { x: 39 , y: 17.5 } : { x: 45, y: 23 }
     }
   }
 

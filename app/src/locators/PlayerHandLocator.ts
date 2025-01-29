@@ -10,26 +10,25 @@ export class PlayerHandLocator extends HandLocator {
 
     switch (position) {
       case Position.TopLeft:
-        coordinates.x! -= 24;
-        coordinates.y! -= 15;
+        coordinates.x! -= 29;
+        coordinates.y! -= 9;
         break;
       case Position.TopCenter:
-        coordinates.x! -= 25;
-        coordinates.y! -= 5
+        coordinates.x! -= 36;
+        coordinates.y! -= 7
         break;
       case Position.TopRight:
-        coordinates.x! += 25;
-        coordinates.y! -= 15;
+        coordinates.x! += 29;
+        coordinates.y! -= 9;
         break;
       case Position.BottomLeft:
-        coordinates.x! -= 27;
-        coordinates.y! += 7;
+        coordinates.x! -= 28;
+        coordinates.y! += 9;
         break;
       case Position.BottomRight:
-        coordinates.x! += 27;
-        coordinates.y! += 7;
+        coordinates.x! += 28;
+        coordinates.y! += 9;
         break;
-
     }
 
     coordinates.z = 1.5
