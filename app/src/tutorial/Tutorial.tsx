@@ -125,7 +125,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 10,
-          bottom: 5
+          bottom: 7
         }
       }),
       move: {
@@ -147,7 +147,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 10,
-          bottom: 5
+          bottom: 7
         }
       }),
       move: {
@@ -212,7 +212,9 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 5,
-          bottom: 5
+          bottom: 5,
+          left: 5,
+          right: 5
         }
       }),
       move: {}
@@ -234,7 +236,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 10,
-          bottom: 5
+          bottom: 7
         }
       }),
       move: {
@@ -285,7 +287,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 10,
-          bottom: 5
+          bottom: 2
         }
       })
     },
@@ -311,7 +313,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.place" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 20, y: 15 }
       },
       focus: (game) => ({
         materials: [
@@ -440,7 +442,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.play" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 20, y: 20 }
       },
       focus: (game) => ({
         materials: [
@@ -459,7 +461,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         margin: {
           top: 5,
           bottom: 5,
-          right: 35
+
         }
       }),
       move: {
@@ -514,7 +516,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.play.last" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 20, y: 20 }
       },
       focus: (game) => ({
         materials: [
@@ -532,8 +534,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           top: 5,
-          bottom: 5,
-          right: 35
+          bottom: 5
         }
       }),
       move: {
@@ -737,8 +738,8 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           bottom: 10,
-          left: 20,
-          right: 20
+          left: 10,
+          right: 10
         }
       }),
       move: {
@@ -760,8 +761,8 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           bottom: 10,
-          left: 20,
-          right: 20
+          left: 10,
+          right: 10
         }
       }),
       move: {
@@ -829,8 +830,8 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         ],
         margin: {
           bottom: 10,
-          left: 20,
-          right: 20
+          left: 10,
+          right: 10
         }
       }),
       move: {
@@ -871,7 +872,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.play.2" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 20, y: 15 }
       },
       focus: (game) => ({
         materials: [
@@ -890,7 +891,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
         margin: {
           top: 5,
           bottom: 5,
-          right: 35
+          right: 15
         }
       }),
       move: {
@@ -983,7 +984,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.play.one" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 15, y: 25 }
       },
       focus: (game) => ({
         materials: [
@@ -1000,9 +1001,9 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
             .location
         ],
         margin: {
-          top: 5,
-          bottom: 5,
-          right: 32
+          bottom: 10,
+          left: 5,
+          right: 5
         }
       }),
       move: {
@@ -1129,7 +1130,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     {
       popup: {
         text: () => <Trans defaults="tuto.play.last" components={BaseComponents}/>,
-        position: { x: 20 }
+        position: { x: 0, y: 25 }
       },
       focus: (game) => ({
         materials: [
@@ -1146,9 +1147,9 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
             .location
         ],
         margin: {
-          top: 5,
-          bottom: 5,
-          right: 32
+          bottom: 10,
+          left: 5,
+          right: 5
         }
       }),
       move: {
