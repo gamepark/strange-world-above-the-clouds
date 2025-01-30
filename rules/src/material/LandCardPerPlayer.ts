@@ -87,10 +87,10 @@ const fourPlayerCards = {
   [LandCard.LandGreen1]: 3,
   [LandCard.LandGreenGreen1]: 3,
   [LandCard.LandGreenGreen2]: 3,
-  [LandCard.LandRedBlue1]: 3,
+  [LandCard.LandRedBlue1]: 2,
   [LandCard.LandRedGrayGray1]: 3,
   [LandCard.LandRedGreen1]: 3,
-  [LandCard.LandRedYellow1]: 3,
+  [LandCard.LandRedYellow1]: 2,
   [LandCard.LandYellow1]: 3,
   [LandCard.LandYellowGreen1]: 3,
 }
