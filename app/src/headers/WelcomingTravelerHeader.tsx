@@ -9,7 +9,6 @@ export const WelcomingTravelerHeader = () => {
   const activePlayer = rules.getActivePlayer()
   const name = usePlayerName(activePlayer)
   const itsMe = player && activePlayer === player
-  console.log(itsMe)
   if (itsMe) {
     return (
       <Trans defaults="header.traveler"/>
