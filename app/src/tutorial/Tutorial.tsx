@@ -1,3 +1,5 @@
+import { AvatarProps, ClotheType, EyebrowType, FacialHairType, MouthType, TopType } from '@gamepark/avataaars'
+import SkinColor from '@gamepark/avataaars/dist/avatar/SkinColor'
 import { MaterialTutorial, TutorialStep } from '@gamepark/react-game'
 import { isMoveItemType, isStartPlayerTurn, isStartRule } from '@gamepark/rules-api'
 import { DarkCity } from '@gamepark/strange-world-above-the-clouds/material/DarkCity'
@@ -17,6 +19,25 @@ const BaseComponents = {
   ...IconsMini
 }
 
+const florianAvatar: AvatarProps = {
+  topType: TopType.NoHair,
+  facialHairType: FacialHairType.BeardLight,
+  clotheColor: '#000000',
+  clotheType: ClotheType.ShirtVNeck,
+  eyebrowType: EyebrowType.UpDown,
+  mouthType: MouthType.Twinkle,
+  skinColor: SkinColor.Light
+}
+
+const celineAvatar: AvatarProps = {
+  topType: TopType.LongHairCurvy,
+  hatColor: '#724133FF',
+  clotheColor: '#000000',
+  clotheType: ClotheType.ShirtVNeck,
+  mouthType: MouthType.Smile,
+  skinColor: SkinColor.Light
+}
+
 export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, LocationType> {
   version = 1
 
@@ -30,8 +51,8 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
 
   players = [
     { id: me },
-    { id: florian, name: 'Florian' },
-    { id: celine, name: 'Céline' }
+    { id: florian, name: 'Florian', avatar: florianAvatar },
+    { id: celine, name: 'Céline', avatar: celineAvatar }
   ]
   setup = new TutorialSetup()
 
