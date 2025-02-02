@@ -358,7 +358,7 @@
       "tuto.volcano": "Il y a un <bold>Volcan</bold> sur la carte que vous venez de placer.\nLorsque vous placez un Volcan, vous devez placer une carte <bold>Fumerole</bold> sur une carte adjacente.",
       "tuto.fumarole.play": "Placez une carte Fumerole ici.",
       "tuto.fumarole.cover": "La carte qui a disparu sous la Fumerole ne rapportera aucun point en fin de partie.",
-      "tuto.fumarole.warning": "<bold>Attention</bold> : une carte Fumerole ne peux pas recouvrir une autre Fumerole. Si un Volcan ne peut pas emettre sa Fumerole, il sera retourné face cachée.",
+      "tuto.fumarole.warning": "<bold>Attention</bold> : une carte Fumerole ne peux pas recouvrir une autre Fumerole. Si un Volcan ne peut pas émettre sa Fumerole, il sera retourné face cachée.",
       "tuto.fumarole.play.2": "Placez la Fumerole de ce nouveau Volcan ici.",
       "tuto.fumarole.dark-city": "Lorsque vous placez une carte Fumerole adjacente à une autre carte Fumerole, vous posez immédiatement la carte <bold>Ville Sombre</bold> disponible de plus haute valeur à la jonction des 2 Fumeroles.",
       "tuto.dark-city.score": "Cette Ville Sombre vous rapportera 9 <star/> en fin de partie.\n<italic>Une carte Fumerole ne peut pas participer à la création de plusieurs Villes Sombres.</italic>",
