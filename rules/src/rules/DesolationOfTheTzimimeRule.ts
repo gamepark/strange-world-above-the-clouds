@@ -185,6 +185,10 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
       countTravelers++
     }
 
+    if (countTravelers > 1) {
+      return [this.playedCard.rotateItem(true)]
+    }
+
     if (countTravelers) {
       this.memorize(Memory.TravelerToWelcome, countTravelers)
     }
