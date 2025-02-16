@@ -22,6 +22,7 @@ export const PlayerPanels = () => {
   const rules = useRules<MaterialRules>()!
   const game = rules.game
   const root = document.getElementById('root')
+  const isEnded = game.rule === undefined
   const context = useMaterialContext()
   const playerId = usePlayerId()
   const { setFocus } = useFocusContext()
@@ -67,10 +68,10 @@ export const PlayerPanels = () => {
             onClick={() => onPlayerClick(player.id)}
             css={[panelPosition, getPositionCss(position)]}
             backgroundImage={getPlayerBackground(player.id)}
-            mainCounter={{
+            mainCounter={isEnded? {
               image: Star,
               value: new ScoringHelper(game, player.id).score
-            }}
+            }: undefined}
           />
         }
       )}
