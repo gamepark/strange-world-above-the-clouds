@@ -30,25 +30,25 @@ const onePlayerCards = {
 }
 
 const twoPlayersCards = {
-  [LandCard.Moon]: 6,
-  [LandCard.LandGreen1]: 2,
-  [LandCard.LandYellow1]: 2,
-  [LandCard.LandBlue1]: 2,
-  [LandCard.LandGray1]: 2,
-  [LandCard.Red1]: 0,
-  [LandCard.LandRedYellow1]: 1,
-  [LandCard.LandRedBlue1]: 1,
-  [LandCard.LandRedGrayGray1]: 2,
-  [LandCard.LandRedGreen1]: 2,
-  [LandCard.LandGrayGray1]: 2,
-  [LandCard.LandGrayGreen1]: 2,
-  [LandCard.LandGrayBlue1]: 2,
-  [LandCard.LandGrayYellow1]: 2,
-  [LandCard.LandBlueYellow1]: 2,
-  [LandCard.LandYellowGreen1]: 2,
-  [LandCard.LandGreenGreen1]: 2,
-  [LandCard.LandGreenGreen2]: 2,
-  [LandCard.LandBlueGreen1]: 2,
+  [LandCard.Moon]: 6, //
+  [LandCard.LandGreen1]: 2, //
+  [LandCard.LandYellow1]: 2, //
+  [LandCard.LandBlue1]: 2, //
+  [LandCard.LandGray1]: 2, //
+  [LandCard.Red1]: 0, //
+  [LandCard.LandRedYellow1]: 1, //
+  [LandCard.LandRedBlue1]: 1, //
+  [LandCard.LandRedGrayGray1]: 2, //
+  [LandCard.LandRedGreen1]: 2, //
+  [LandCard.LandGrayGray1]: 2, //
+  [LandCard.LandGrayGreen1]: 2, //
+  [LandCard.LandGrayBlue1]: 2, //
+  [LandCard.LandGrayYellow1]: 2, //
+  [LandCard.LandBlueYellow1]: 2, //
+  [LandCard.LandYellowGreen1]: 2, //
+  [LandCard.LandGreenGreen1]: 2, //
+  [LandCard.LandGreenGreen2]: 2, //
+  [LandCard.LandBlueGreen1]: 2, //
 }
 
 const threePlayersCards = {
@@ -73,15 +73,18 @@ const threePlayersCards = {
   [LandCard.LandBlueGreen1]: 2,
 }
 
+// 8+2+3+3+2+1+1+3+3+2+2+2+2+2+2+3+2+2
+
+
 const fourPlayerCards = {
-  [LandCard.LandBlue1]: 10,
+  [LandCard.Moon]: 10,
   [LandCard.LandBlueGreen1]: 3,
   [LandCard.LandBlueYellow1]: 3,
-  [LandCard.Moon]: 3,
+  [LandCard.LandBlue1]: 3,
   [LandCard.LandGray1]: 3,
   [LandCard.Red1]: 1,
-  [LandCard.LandGrayBlue1]: 2,
-  [LandCard.LandGrayGray1]: 2,
+  [LandCard.LandGrayBlue1]: 3,
+  [LandCard.LandGrayGray1]: 3,
   [LandCard.LandGrayGreen1]: 3,
   [LandCard.LandGrayYellow1]: 3,
   [LandCard.LandGreen1]: 3,
@@ -94,3 +97,5 @@ const fourPlayerCards = {
   [LandCard.LandYellow1]: 3,
   [LandCard.LandYellowGreen1]: 3,
 }
+
+// 10+3+3+3+3+1+3+3+3+3+3+3+3+2+3+3+2+3+3
