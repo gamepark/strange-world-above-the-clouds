@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { useGame, usePlayerName } from '@gamepark/react-game'
 import { MaterialGame } from '@gamepark/rules-api'
 import { ChangeFirstPlayerRule } from '@gamepark/strange-world-above-the-clouds/rules/ChangeFirstPlayerRule'
@@ -10,7 +9,7 @@ export const ChangeFirstPlayerHeader = () => {
   const newPlayer = rule.nextPlayer
   const name = usePlayerName(newPlayer)
   return (
-    <Trans defaults="header.change-player" values={{ player: name }} />
+    <Trans i18nKey="header.change-player" values={{ player: name }} />
   )
 
 }

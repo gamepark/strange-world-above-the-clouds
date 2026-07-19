@@ -8,10 +8,10 @@ export const DarkCitiesHelp: FC<MaterialHelpProps> = (props) => {
   return (
     <>
       <h2>
-        <Trans defaults="dark-city" />
+        <Trans i18nKey="dark-city" />
       </h2>
       <p>
-        <Trans defaults="dark-city.text" components={BaseComponents} values={{ star: item.id}} />
+        <Trans i18nKey="dark-city.text" components={BaseComponents} values={{ star: item.id}} />
       </p>
     </>
   )

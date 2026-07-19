@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { PlayMoveButton, useGame, useLegalMove, usePlayerId } from '@gamepark/react-game'
 import { isEndPlayerTurn, MaterialGame } from '@gamepark/rules-api'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
@@ -16,14 +15,14 @@ export const DraftHeader = () => {
   if (player !== undefined && cardToPlace === rules.getPlacedCards(player).length && game.rule?.players?.includes(player)) {
     return (
       <PlayMoveButton move={move} auto={5}>
-        <Trans defaults="header.draft.confirm" />
+        <Trans i18nKey="header.draft.confirm" />
       </PlayMoveButton>
     )
   }
 
   if (rules.game.players.length === 2) {
     return (
-      <Trans defaults="header.draft" values={{ cards: cardToPlace }} />
+      <Trans i18nKey="header.draft" values={{ cards: cardToPlace }} />
     )
   }
 
@@ -31,12 +30,12 @@ export const DraftHeader = () => {
 
   if (!turnOrderCard) {
     return (
-      <Trans defaults="header.draft.left" values={{ cards: cardToPlace }} />
+      <Trans i18nKey="header.draft.left" values={{ cards: cardToPlace }} />
     )
   }
 
   return (
-    <Trans defaults="header.draft.right" values={{ cards: cardToPlace }} />
+    <Trans i18nKey="header.draft.right" values={{ cards: cardToPlace }} />
   )
 
 }

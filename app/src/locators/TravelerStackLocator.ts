@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { DeckLocator, ItemContext, LocationDescription, MaterialContext } from '@gamepark/react-game'
 import { Coordinates, Location, MaterialItem } from '@gamepark/rules-api'
@@ -22,6 +21,15 @@ export class TravelerStackLocator extends DeckLocator {
     if (context.rules.game.players.length === 3) return { x: fumaroleCoordinates.x! + 7, y: fumaroleCoordinates.y! }
     if (context.rules.game.players.length === 2) return { x: fumaroleCoordinates.x + 8, y: -24 }
     return { x: 0, y: fumaroleStackLocator.getCoordinates(location, context).y! + 9.5 }
+  }
+
+  getPositionDependencies(_location: Location, context: MaterialContext) {
+    // Layout switches to a spread-out row (and depends on the stack size) during the WelcomingTraveler rule.
+    return {
+      stack: context.rules.material(MaterialType.TravelerCard).location(LocationType.TravelerStack).length,
+      ruleId: context.rules.game.rule?.id,
+      rulePlayer: context.rules.game.rule?.player
+    }
   }
 
   getGap(_location: Location, context: ItemContext): Partial<Coordinates> {

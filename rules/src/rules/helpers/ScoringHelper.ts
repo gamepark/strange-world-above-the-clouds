@@ -1,6 +1,5 @@
 import { getDistanceBetweenSquares, Material, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
-import uniq from 'lodash/uniq'
-import sum from 'lodash/sum'
+import { sum, uniq } from 'es-toolkit'
 import { LandType } from '../../LandType'
 import { LandCard } from '../../material/LandCard'
 import { LandCardsCharacteristics } from '../../material/LandCardCharacteristics'
@@ -108,7 +107,7 @@ export class ScoringHelper extends MaterialRulesPart {
     if (!adjacents) return mountains
 
     let adjacentSize = 0
-    let indexes: number[] = [card.getIndex()]
+    const indexes: number[] = [card.getIndex()]
     for (const adjacentIndex of adjacents.getIndexes()) {
       const actualSize = this.countMountainInArea(panorama, [...alreadyVerifiedIndex, ...indexes], adjacents.index(adjacentIndex))
       if (actualSize > adjacentSize) adjacentSize += actualSize

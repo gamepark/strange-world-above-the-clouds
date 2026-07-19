@@ -1,5 +1,5 @@
 import { getEnumValues, MaterialGameSetup } from '@gamepark/rules-api'
-import times from 'lodash/times'
+import { times } from 'es-toolkit/compat'
 import { DarkCity } from './material/DarkCity'
 import { LandCard } from './material/LandCard'
 import { getLandscapeCards } from './material/LandCardPerPlayer'

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { getRelativePlayerIndex, StyledPlayerPanel, useFocusContext, useMaterialContext, usePlayerId, usePlayers, useRules } from '@gamepark/react-game'
 import { MaterialRules } from '@gamepark/rules-api'
@@ -27,7 +26,7 @@ export const PlayerPanels = () => {
   const playerId = usePlayerId()
   const { setFocus } = useFocusContext()
 
-  const onPlayerClick = useCallback((player) => {
+  const onPlayerClick = useCallback((player: PlayerColor) => {
     const itsMe = player === playerId
       setFocus({
         materials: itsMe? [

@@ -46,6 +46,11 @@ class TableauLocator extends Locator {
     return coordinates
   }
 
+  getPositionDependencies(location: Location, context: MaterialContext) {
+    // Card positions are computed relative to the tableau boundaries, which change as cards are placed.
+    return new TableauHelper(context.rules.game, location.player!).globalBoundaries
+  }
+
   getBaseCoordinates(location: Location, context: MaterialContext): Partial<Coordinates> {
     const playerIndex = getRelativePlayerIndex(context, location.player)
     const position = playerPositions[context.rules.players.length - 2][playerIndex]

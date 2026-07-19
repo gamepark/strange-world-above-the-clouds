@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialHelpProps, Picture, PlayMoveButton, useLegalMove, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { MaterialRules } from '@gamepark/rules-api/dist/material/MaterialRules'
@@ -8,7 +7,7 @@ import { LandCard } from '@gamepark/strange-world-above-the-clouds/material/Land
 import { LandCardsCharacteristics } from '@gamepark/strange-world-above-the-clouds/material/LandCardCharacteristics'
 import { LocationType } from '@gamepark/strange-world-above-the-clouds/material/LocationType'
 import { MaterialType } from '@gamepark/strange-world-above-the-clouds/material/MaterialType'
-import uniq from 'lodash/uniq'
+import { uniq } from 'es-toolkit'
 import { FC, ReactElement } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import MoonMini from '../../images/icons/moon-mini.png'
@@ -49,7 +48,7 @@ export const LandCardHelp: FC<MaterialHelpProps> = (props) => {
       )}
       {isFumarole && (
         <p>
-          <Trans defaults="land.fumarole" components={IconsMini}/>
+          <Trans i18nKey="land.fumarole" components={IconsMini}/>
         </p>
       )}
       {types.map((type, index) => (
@@ -95,7 +94,7 @@ const TzimimeCard: FC<MaterialHelpProps> = () => {
     <>
       <h2>{t('card.tzimime')}</h2>
       <p>
-        <Trans defaults="card.tzimime.text" components={BaseComponents}/>
+        <Trans i18nKey="card.tzimime.text" components={BaseComponents}/>
       </p>
     </>
   )
@@ -114,7 +113,7 @@ const DraftCard: FC<MaterialHelpProps> = (props) => {
       <h2>{t('card.land')}</h2>
       <p>
         <Trans
-          defaults={toMe ? 'card.draft-area.to-me' : 'card.draft-area'}
+          i18nKey={toMe ? 'card.draft-area.to-me' : 'card.draft-area'}
           components={BaseComponents}
           values={{
             player,
@@ -135,7 +134,7 @@ const DeckCard: FC<MaterialHelpProps> = () => {
       <h2>{t('card.deck')}</h2>
       <p>
         <Trans
-          defaults="card.deck.text"
+          i18nKey="card.deck.text"
           components={BaseComponents}
           values={{ cards: deckSize }}
         />
@@ -172,12 +171,12 @@ export const IconsMini = {
 }
 
 const LandTypeDescription: Record<string | number, ReactElement> = {
-  [LandType.Water]: <Trans defaults="land.water" components={IconsMini}/>,
-  [LandType.Mountain]: <Trans defaults="land.mountain" components={IconsMini}/>,
-  [LandType.Plant]: <Trans defaults="land.plant" components={IconsMini}/>,
-  [LandType.Swamp]: <Trans defaults="land.swamp" components={IconsMini}/>,
-  [LandType.Volcano]: <Trans defaults="land.volcano" components={IconsMini}/>,
-  'moon': <Trans defaults="land.moon" components={IconsMini}/>
+  [LandType.Water]: <Trans i18nKey="land.water" components={IconsMini}/>,
+  [LandType.Mountain]: <Trans i18nKey="land.mountain" components={IconsMini}/>,
+  [LandType.Plant]: <Trans i18nKey="land.plant" components={IconsMini}/>,
+  [LandType.Swamp]: <Trans i18nKey="land.swamp" components={IconsMini}/>,
+  [LandType.Volcano]: <Trans i18nKey="land.volcano" components={IconsMini}/>,
+  'moon': <Trans i18nKey="land.moon" components={IconsMini}/>
 }
 
 const BaseComponents = {

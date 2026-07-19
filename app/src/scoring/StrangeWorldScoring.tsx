@@ -1,7 +1,6 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { ScoringDescription } from '@gamepark/react-client'
-import { Picture } from '@gamepark/react-game'
+import { Picture, ScoringDescription } from '@gamepark/react-game'
+import { HTMLAttributes } from 'react'
 import { PlayerColor } from '@gamepark/strange-world-above-the-clouds/PlayerColor'
 import { ScoringHelper } from '@gamepark/strange-world-above-the-clouds/rules/helpers/ScoringHelper'
 import { StrangeWorldAboveTheCloudsRules } from '@gamepark/strange-world-above-the-clouds/StrangeWorldAboveTheCloudsRules'
@@ -42,7 +41,7 @@ export class StrangeWorldScoring implements ScoringDescription {
   }
 
   getScoringHeader(key: ScoringKeys) {
-    const pictureProps = { css: miniCss } as any
+    const pictureProps = { css: miniCss } as unknown as HTMLAttributes<HTMLElement>
     switch (key) {
       case ScoringKeys.Mountain:
         return (
@@ -90,7 +89,7 @@ export class StrangeWorldScoring implements ScoringDescription {
       default:
         return (
           <div css={[bold, totalCss, centeredCss]}>
-            <Trans defaults="scoring.total"/>
+            <Trans i18nKey="scoring.total"/>
           </div>
         )
     }

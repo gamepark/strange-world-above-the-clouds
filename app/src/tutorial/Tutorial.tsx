@@ -59,17 +59,17 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
   steps: TutorialStep[] = [
     {
       popup: {
-        text: () => <Trans defaults="tuto.welcome" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.welcome" components={BaseComponents}/>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.panorama" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.panorama" components={BaseComponents}/>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.starting" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.starting" components={BaseComponents}/>,
         position: { y: 25 }
       },
       focus: (game) => ({
@@ -83,7 +83,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.green" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.green" components={BaseComponents}/>,
         position: {
           y: -17
         }
@@ -100,7 +100,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.one" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.one" components={BaseComponents}/>,
         position: {
           y: -17
         }
@@ -117,7 +117,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draft.sun" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.draft.sun" components={BaseComponents}/>,
         position: { y: 25 }
       },
       focus: (game) => ({
@@ -131,7 +131,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draft.r1.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.draft.r1.2" components={BaseComponents}/>,
         position: { y: 10, x: 30 }
       },
       focus: (game) => ({
@@ -223,7 +223,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.received.r1.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.received.r1.2" components={BaseComponents}/>,
         position: { y: 10 }
       },
       focus: (game) => ({
@@ -242,7 +242,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draft.r1.1" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.draft.r1.1" components={BaseComponents}/>,
         position: { y: 10, x: 30 }
       },
       focus: (game) => ({
@@ -296,7 +296,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.received.r1.1" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.received.r1.1" components={BaseComponents}/>,
         position: { y: -15 }
       },
       focus: (game) => ({
@@ -314,12 +314,12 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.hand" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.hand" components={BaseComponents}/>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.sun" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.sun" components={BaseComponents}/>
       }
     },
     {
@@ -333,7 +333,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.place" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.place" components={BaseComponents}/>,
         position: { x: 20, y: 15 }
       },
       focus: (game) => ({
@@ -365,7 +365,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.mountain.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.mountain.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -383,7 +383,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.mountain.score.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.mountain.score.2" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -401,7 +401,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.water.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.water.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -420,7 +420,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.water.warning" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.water.warning" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -439,7 +439,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.play" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.opponent.play" components={BaseComponents}/>
       }
     },
     {
@@ -462,7 +462,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.play" components={BaseComponents}/>,
         position: { x: 20, y: 20 }
       },
       focus: (game) => ({
@@ -494,7 +494,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.animal.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.animal.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -513,7 +513,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.play" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.opponent.play" components={BaseComponents}/>
       }
     },
     {
@@ -536,7 +536,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play.last" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.play.last" components={BaseComponents}/>,
         position: { x: 20, y: 20 }
       },
       focus: (game) => ({
@@ -568,7 +568,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.swamp.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.swamp.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -587,7 +587,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.portal" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.portal" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -611,7 +611,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.traveler" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.traveler" components={BaseComponents}/>,
         position: { y: 17 },
         size: { width: 100 }
       },
@@ -629,7 +629,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.traveler.choose" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.traveler.choose" components={BaseComponents}/>,
         position: { x: 10, y: 20 }
       },
       focus: (game) =>
@@ -664,7 +664,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.traveler.placement" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.traveler.placement" components={BaseComponents}/>,
         position: { x: 20, y: 20 },
         size: { width: 100 }
       },
@@ -683,7 +683,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.traveler.world" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.traveler.world" components={BaseComponents}/>,
         position: { x: 20, y: 20 },
         size: { width: 100 }
       },
@@ -702,7 +702,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.play.2" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.opponent.play.2" components={BaseComponents}/>
       }
     },
     {
@@ -723,7 +723,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.round.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.round.2" components={BaseComponents}/>,
         position: { x: 20}
       },
       focus: (game) => ({
@@ -745,7 +745,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draft.r2.2" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.draft.r2.2" components={BaseComponents}/>
       },
       focus: (game) => ({
         materials: [
@@ -837,7 +837,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.draft.r2.1" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.draft.r2.1" components={BaseComponents}/>
       },
       focus: (game) => ({
         materials: [
@@ -892,7 +892,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.play.2" components={BaseComponents}/>,
         position: { x: 20, y: 15 }
       },
       focus: (game) => ({
@@ -924,7 +924,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.moon.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.moon.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -943,7 +943,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.moon.score.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.moon.score.2" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -962,7 +962,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.moon.warning" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.moon.warning" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -981,7 +981,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.play" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.opponent.play" components={BaseComponents}/>
       }
     },
     {
@@ -1004,7 +1004,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play.one" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.play.one" components={BaseComponents}/>,
         position: { x: 15, y: 25 }
       },
       focus: (game) => ({
@@ -1036,7 +1036,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.volcano" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.volcano" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -1055,7 +1055,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.fumarole.play" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.fumarole.play" components={BaseComponents}/>,
         position: { x: 17, y: -20 }
       },
       focus: (game) => ({
@@ -1080,7 +1080,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.fumarole.cover" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.fumarole.cover" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -1099,7 +1099,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.fumarole.warning" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.fumarole.warning" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -1118,7 +1118,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.opponent.play" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.opponent.play" components={BaseComponents}/>
       }
     },
     {
@@ -1150,7 +1150,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.play.last" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.play.last" components={BaseComponents}/>,
         position: { x: 0, y: 25 }
       },
       focus: (game) => ({
@@ -1182,7 +1182,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.fumarole.play.2" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.fumarole.play.2" components={BaseComponents}/>,
         position: { x: 17, y: -20 }
       },
       focus: (game) => ({
@@ -1207,7 +1207,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.fumarole.dark-city" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.fumarole.dark-city" components={BaseComponents}/>,
         position: { x: 17, y: -20 }
       },
       focus: (game) => ({
@@ -1232,7 +1232,7 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.dark-city.score" components={BaseComponents}/>,
+        text: () => <Trans i18nKey="tuto.dark-city.score" components={BaseComponents}/>,
         position: { x: 17 }
       },
       focus: (game) => ({
@@ -1251,12 +1251,12 @@ export class Tutorial extends MaterialTutorial<PlayerColor, MaterialType, Locati
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.end.trigger" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.end.trigger" components={BaseComponents}/>
       }
     },
     {
       popup: {
-        text: () => <Trans defaults="tuto.reminder" components={BaseComponents}/>
+        text: () => <Trans i18nKey="tuto.reminder" components={BaseComponents}/>
       }
     },
     {

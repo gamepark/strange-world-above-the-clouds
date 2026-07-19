@@ -51,10 +51,6 @@ export const LandCardsCharacteristics: Record<LandCard, LandCardCharacteristics>
   [LandCard.Moon]: {
     moon: true
   },
-  [LandCard.Red1]: {
-    types: [LandType.Volcano],
-    portal: true,
-  },
   [LandCard.LandGray1]: {
     types: [LandType.Mountain],
     portal: true,

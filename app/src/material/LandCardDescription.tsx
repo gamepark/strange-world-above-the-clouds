@@ -131,7 +131,7 @@ export class LandCardDescription extends CardDescription {
       const card = context.rules.material(MaterialType.LandCard).getItem(context.index)!
       return (
         <>
-          <ItemMenuButton label={<Trans defaults="button.give"/>}
+          <ItemMenuButton label={<Trans i18nKey="button.give"/>}
                           move={draftMove}
                           labelPosition="right"
                           angle={-30 + (card.location.x! * 30)}

@@ -19,6 +19,11 @@ export class PlayerTravelerLocator extends Locator {
     }
   }
 
+  getPositionDependencies(location: Location, context: MaterialContext) {
+    // The traveler is placed relative to the tableau boundaries, which change as cards are placed.
+    return new TableauHelper(context.rules.game, location.player!).globalBoundaries
+  }
+
   getHoverTransform(item: MaterialItem, context: ItemContext): string[] {
     const boundaries = new TableauHelper(context.rules.game, item.location.player!).globalBoundaries
     const transform = ['translateZ(10em)', 'scale(2)']

@@ -1,5 +1,5 @@
 import { Direction, getDistanceBetweenSquares, getSquareInDirection, Material, MaterialMove } from '@gamepark/rules-api'
-import isEqual from 'lodash/isEqual'
+import { isEqual } from 'es-toolkit'
 import { isSwamp, isVolcano, isWater } from '../LandType'
 import { LandCard } from '../material/LandCard'
 import { LandCardsCharacteristics } from '../material/LandCardCharacteristics'
@@ -41,7 +41,6 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
       if (isWater(color) && !disabled) {
         if (this.hasAdjacentWaterLand) {
           this.memorize(Memory.DesolationKind, DesolationKind.Water)
-          disabled = true
           moves.push(playedCard.rotateItem(true))
           this.forget(Memory.TravelerToWelcome)
           return moves
@@ -51,7 +50,6 @@ export class DesolationOfTheTzimimeRule extends BasePlayedCardRule {
       if (isSwamp(color) && !disabled) {
         if (this.hasSwampInSameLine) {
           this.memorize(Memory.DesolationKind, DesolationKind.Swamp)
-          disabled = true
           moves.push(playedCard.rotateItem(true))
           this.forget(Memory.TravelerToWelcome)
           return moves

@@ -13,16 +13,16 @@ export const FirstPlayerHelp: FC<MaterialHelpProps> = (props) => {
         {t('card.first-player')}
       </h2>
       <p>
-        <Trans defaults="card.first-player.text" values={{ player }} />
+        <Trans i18nKey="card.first-player.text" values={{ player }} />
       </p>
       { !item.location?.rotation && (
         <p>
-          <Trans defaults="card.first-player.clockwise"/>
+          <Trans i18nKey="card.first-player.clockwise"/>
         </p>
       )}
       { !!item.location?.rotation && (
         <p>
-          <Trans defaults="card.first-player.counterclockwise"/>
+          <Trans i18nKey="card.first-player.counterclockwise"/>
         </p>
       )}
     </>

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Picture, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, usePlayerName, useRules, useUndo } from '@gamepark/react-game'
 import { isCustomMoveType, MaterialRules } from '@gamepark/rules-api'
@@ -24,7 +23,7 @@ export const DesolationOfTheTzimimeHeader = () => {
   const name = usePlayerName(activePlayer)
   if (player === undefined || activePlayer !== player) {
     return (
-      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} values={{ player: name }} components={{
+      <Trans i18nKey={getDesolationKey(desolationKind, player, activePlayer)} values={{ player: name }} components={{
         ...components,
         button: <u />
       }} />
@@ -33,30 +32,30 @@ export const DesolationOfTheTzimimeHeader = () => {
 
   return (
     <>
-      <Trans defaults={getDesolationKey(desolationKind, player, activePlayer)} components={{
+      <Trans i18nKey={getDesolationKey(desolationKind, player, activePlayer)} components={{
         ...components,
         button: <ThemeButton onClick={() => setOpen(true)} />
       }} />
       <RulesDialog open={open} close={() => setOpen(false)}>
         <div css={rulesCss}>
           <h2>
-            <Trans defaults="header.desolation"/>
+            <Trans i18nKey="header.desolation"/>
           </h2>
           <p>
-            {desolationKind === DesolationKind.Portal && <Trans defaults="warn.portal"/>}
-            {desolationKind === DesolationKind.Moon && <Trans defaults="warn.moon" components={components}/>}
-            {desolationKind === DesolationKind.Swamp && <Trans defaults="warn.swamp" components={components}/>}
-            {desolationKind === DesolationKind.Water && <Trans defaults="warn.water" components={components}/>}
+            {desolationKind === DesolationKind.Portal && <Trans i18nKey="warn.portal"/>}
+            {desolationKind === DesolationKind.Moon && <Trans i18nKey="warn.moon" components={components}/>}
+            {desolationKind === DesolationKind.Swamp && <Trans i18nKey="warn.swamp" components={components}/>}
+            {desolationKind === DesolationKind.Water && <Trans i18nKey="warn.water" components={components}/>}
           </p>
           <p>
-            <Trans defaults="warn.tzimime"/>
+            <Trans i18nKey="warn.tzimime"/>
           </p>
           <p css={buttonContainerCss}>
             <PlayMoveButton move={pass} onPlay={() => setOpen(false)} auto={10} >
-              <Trans defaults="warn.confirm" />
+              <Trans i18nKey="warn.confirm" />
             </PlayMoveButton>
             <ThemeButton onClick={() => undo()} onPlay={() => setOpen(false)}>
-              <Trans defaults="warn.undo" />
+              <Trans i18nKey="warn.undo" />
             </ThemeButton>
           </p>
         </div>

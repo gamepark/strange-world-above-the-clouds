@@ -1,5 +1,5 @@
 import { Location, MaterialGame, MaterialItem, MaterialRulesPart } from '@gamepark/rules-api'
-import uniqBy from 'lodash/uniqBy'
+import { uniqBy } from 'es-toolkit'
 import { LocationType } from '../../material/LocationType'
 import { MaterialType } from '../../material/MaterialType'
 

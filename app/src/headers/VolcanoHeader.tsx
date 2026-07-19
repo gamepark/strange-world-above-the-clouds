@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { MaterialRules } from '@gamepark/rules-api'
 import { Trans } from 'react-i18next'
@@ -11,11 +10,11 @@ export const VolcanoHeader = () => {
   const itsMe = activePlayer === player
   if (itsMe) {
     return (
-      <Trans defaults="header.volcano"/>
+      <Trans i18nKey="header.volcano"/>
     )
   }
   return (
-    <Trans defaults="header.volcano.player" values={{ player: name }}/>
+    <Trans i18nKey="header.volcano.player" values={{ player: name }}/>
   )
 
 }

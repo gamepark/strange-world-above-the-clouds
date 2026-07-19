@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { MaterialComponent, PlayMoveButton, RulesDialog, ThemeButton, useLegalMove, usePlayerId, usePlayerName, useRules } from '@gamepark/react-game'
 import { isCustomMoveType, isMoveItemType } from '@gamepark/rules-api'
@@ -20,17 +19,17 @@ export const ChooseTurnOrderHeader = () => {
   const name = usePlayerName(activePlayer)
   if (player === undefined || activePlayer !== player) {
     return (
-      <Trans defaults="header.choose.turn.player" values={{ player: name }}/>
+      <Trans i18nKey="header.choose.turn.player" values={{ player: name }}/>
     )
   }
   return (
     <>
     <ThemeButton onClick={() => setOpen(true)}>
-      <Trans defaults="header.choose.turn"/>
+      <Trans i18nKey="header.choose.turn"/>
     </ThemeButton>
       <RulesDialog open={open} close={() => setOpen(false)}>
         <div css={rulesCss}>
-          <h2><Trans defaults="header.choose.turn"><span/></Trans></h2>
+          <h2><Trans i18nKey="header.choose.turn"><span/></Trans></h2>
           <div css={choiceContainerCss}>
             <div>
               <MaterialComponent type={MaterialType.FirstPlayerCard}/>

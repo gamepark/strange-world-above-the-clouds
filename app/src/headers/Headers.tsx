@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { RuleId } from '@gamepark/strange-world-above-the-clouds/rules/RuleId'
 import { ComponentType } from 'react'
 import { ChangeFirstPlayerHeader } from './ChangeFirstPlayerHeader'

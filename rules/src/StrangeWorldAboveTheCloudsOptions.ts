@@ -1,5 +1,4 @@
 import { OptionsSpec } from '@gamepark/rules-api'
-import { TFunction } from 'i18next'
 import { PlayerColor, playerColors } from './PlayerColor'
 
 /**
@@ -22,7 +21,7 @@ export type StrangeWorldAboveTheCloudsOptions = {
 export const StrangeWorldAboveTheCloudsOptionsSpec: OptionsSpec<StrangeWorldAboveTheCloudsOptions> = {
   players: {
     id: {
-      label: (t: TFunction) => t('player.color'),
+      label: (t) => t('player.color'),
       values: playerColors,
       valueSpec: color => ({ label: t => t(`player.${color}`)})
     }

@@ -12,10 +12,10 @@ export const TravelerHelp: FC<MaterialHelpProps> = (props) => {
         {t(`traveler.${item.id}`)}
       </h2>
       <p>
-        <Trans defaults="traveler.base" components={BaseComponents} />
+        <Trans i18nKey="traveler.base" components={BaseComponents} />
       </p>
       <p>
-        <Trans defaults={`traveler.${item.id}.text`} components={BaseComponents} />
+        <Trans i18nKey={`traveler.${item.id}.text`} components={BaseComponents} />
       </p>
     </>
   )
