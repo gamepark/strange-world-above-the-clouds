@@ -1,7 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@gamepark/strange-world-above-the-clouds/*": ["../rules/src/*"]
     }

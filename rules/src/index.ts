@@ -1,3 +1,3 @@
 export { StrangeWorldAboveTheCloudsRules } from './StrangeWorldAboveTheCloudsRules'
-export { StrangeWorldAboveTheCloudsOptionsSpec } from './StrangeWorldAboveTheCloudsOptions'
+export { StrangeWorldAboveTheCloudsOptionsSpecV2 } from './StrangeWorldAboveTheCloudsOptions'
 export { StrangeWorldAboveTheCloudsSetup } from './StrangeWorldAboveTheCloudsSetup'

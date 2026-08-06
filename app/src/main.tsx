@@ -1,4 +1,4 @@
-import { StrangeWorldAboveTheCloudsOptionsSpec } from '@gamepark/strange-world-above-the-clouds/StrangeWorldAboveTheCloudsOptions'
+import { StrangeWorldAboveTheCloudsOptionsSpecV2 } from '@gamepark/strange-world-above-the-clouds/StrangeWorldAboveTheCloudsOptions'
 import { StrangeWorldAboveTheCloudsRules } from '@gamepark/strange-world-above-the-clouds/StrangeWorldAboveTheCloudsRules'
 import { StrangeWorldAboveTheCloudsSetup } from '@gamepark/strange-world-above-the-clouds/StrangeWorldAboveTheCloudsSetup'
 import { GameProvider } from '@gamepark/react-game'
@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')!).render(
     <GameProvider
       game="strange-world-above-the-clouds"
       Rules={StrangeWorldAboveTheCloudsRules}
-      optionsSpec={StrangeWorldAboveTheCloudsOptionsSpec}
+      optionsSpec={StrangeWorldAboveTheCloudsOptionsSpecV2}
       GameSetup={StrangeWorldAboveTheCloudsSetup}
       material={Material}
       locators={Locators}
